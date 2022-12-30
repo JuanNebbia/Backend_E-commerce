@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const uploader = require('../../utils')
 const ProductManager = require('../../managers/ProductManager')
 
 const router = Router()
@@ -31,8 +32,12 @@ router.get('/:pid', async (req, res)=>{
     res.send({product})
 })
 
-router.post('/', async (req, res) =>{
+router.post('/', uploader.array('files'), async (req, res) =>{
     const newProduct = req.body
+    if(req.files){
+        const paths = req.files.map(file => file.path)
+        newProduct.thumbnails = paths
+    }
     if(!Object.keys(newProduct).length){
         return res.status(400).send('Error: Missing product')
     }
