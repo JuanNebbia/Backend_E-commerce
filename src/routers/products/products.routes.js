@@ -1,89 +1,107 @@
 const { Router } = require('express')
 const uploader = require('../../utils')
-const ProductManager = require('../../managers/ProductManager')
+const ProductManager = require('../../dao/fileManagers/ProductManager')
+const ProductManagerMongo = require('../../dao/mongoManagers/productManagerMongo')
+const options = require('../../config/options')
 
 const router = Router()
 
-const productManager = new ProductManager('./products.json')
+const productService = new ProductManager(options.fileSystem.productsFileName)
+const productMongoService = new ProductManagerMongo()
 
 router.get('/', async (req, res)=>{
-    const products = await productManager.getProducts()
     const limit = req.query.limit
-    if(!limit){
-        return res.send({
+    try {
+        const products = await productMongoService.getProducts()
+        if(!limit){
+            return res.send({
+                status: 'success',
+                data: products})
+        }
+        const limitedProducts = products.slice(0,limit)
+        res.send({
             status: 'success',
-            data: products})
+            data: limitedProducts
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            error: error.message
+        })
     }
-    const limitedProducts = products.slice(0,limit)
-    res.send({
-        status: 'success',
-        data: limitedProducts
-    })
 })
 
 router.get('/:pid', async (req, res)=>{
-    const id = Number(req.params.pid)
-    const product = await productManager.getProductById(id)
-    if(product.error){
-        return res.status(400).send({
-            error: product.error
+    const id = req.params.pid
+    try {
+        const product = await productMongoService.getProductById(id)
+        res.send({product})
+        
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            error: error.message
         })
     }
-    res.send({product})
 })
 
 router.post('/', uploader.array('files'), async (req, res) =>{
-    const newProduct = req.body
-    if(req.files){
-        const paths = req.files.map(file => file.path)
-        newProduct.thumbnails = paths
+    try {
+        const newProduct = req.body
+        if(req.files){
+            const paths = req.files.map(file => file.path)
+            newProduct.thumbnails = paths
+        }
+        if(!Object.keys(newProduct).length){
+            throw new Error('Error: Missing product')
+        }
+        const addProduct = await productMongoService.addProduct(newProduct)
+        res.send({
+            status: 'success',
+            added: addProduct
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            error: error.message
+        })
     }
-    if(!Object.keys(newProduct).length){
-        return res.status(400).send('Error: Missing product')
-    }
-    const addProduct = await productManager.addProduct(newProduct)
-    if(addProduct.error){
-        return res.status(400).send({
-                error: addProduct.error
-            })
-    }
-    res.send({
-        status: 'success',
-        added: addProduct
-    })
 })
 
 router.put('/:pid', async(req, res)=>{
-    const productId = Number(req.params.pid)
-    if(req.body.id){
-        return res.status(400).send({
-            error: "No id must be provided"
+    const productId = req.params.pid
+    try {
+        if(req.body.id){
+            throw new Error("No id must be provided")
+        }
+        const updateProduct = await productMongoService.updateProduct(productId, req.body)
+        res.send({
+            status: 'success',
+            newProduct: updateProduct
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            error: error.message
         })
     }
-    const updateProduct = await productManager.updateProduct(productId, req.body)
-    if(updateProduct.error){
-        return res.status(400).send({
-                    error: updateProduct.error
-                })
-    }
-    res.send({
-        status: 'success',
-        newProduct: updateProduct
-    })
+
 })
 
 router.delete('/:pid', async(req, res)=>{
-    const productId = Number(req.params.pid)
-    const deleteProduct = await productManager.deleteProduct(productId)
-    if(deleteProduct.error){
-        return res.status(400).send({
-            error: deleteProduct.error
+    const productId = req.params.pid
+    try {
+        const deleteProduct = await productMongoService.deleteProduct(productId)
+        res.send({
+            status: 'success',
+            deletedProduct: deleteProduct
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            error: error.message
         })
     }
-    res.send({
-        status: 'success',
-        deletedProduct: deleteProduct
-    })
 })
 
 module.exports = router

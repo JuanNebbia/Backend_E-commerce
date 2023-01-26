@@ -1,6 +1,7 @@
 const express = require('express')
 const apiRoutes = require('./routers/app.routers')
 const path = require('path')
+require('./config/dbConfig')
 
 const PORT = 8080
 const app = express()
