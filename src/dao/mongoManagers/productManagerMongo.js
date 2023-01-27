@@ -26,13 +26,13 @@ class ProductManagerMongo {
 
     async addProduct(product) {
         try{
+            await productModel.create(product)
+            console.log(`${product.title} added`)
             const newProduct = {
                 status: product.status || true,
                 thumbnails: product.thumbnails || [],
                 ...product
             }
-            await productModel.create(newProduct)
-            console.log(`${product.title} added`)
             return newProduct
         }
         catch(error){

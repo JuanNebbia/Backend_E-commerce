@@ -1,41 +1,63 @@
 const { Router } = require('express')
 const CartManager = require('../../dao/fileManagers/CartManager')
+const CartManagerMongo = require('../../dao/mongoManagers/CartManagerMongo')
 
 const router = Router()
 
 const cartManager = new CartManager('./carts.json')
+const cartManagerMongo = new CartManagerMongo()
 
-router.get('/:cid',async (req, res) =>{
-    const id = Number(req.params.cid)
-    const cart = await cartManager.getCartById(id) 
-    if(cart.error){
-        res.status(400).send({
-            error: cart.error
+router.get('/',async (req, res) =>{
+    try {
+        const id = req.params.cid
+        const cart = await cartManagerMongo.getCarts(id) 
+        res.send({
+            status: 'success',
+            carts: cart
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            error: error.message
         })
     }
-    res.send({
-        status: 'success',
-        products: cart.products
-    })
+})
+
+router.get('/:cid',async (req, res) =>{
+    const id = req.params.cid
+    try {
+        const cart = await cartManagerMongo.getCartById(id) 
+        res.send({
+            status: 'success',
+            cart: cart
+        })  
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            error: error.message
+        })
+    }
 })
 
 router.post('/:cid/product/:pid', async(req,res)=>{
-    const cartId = Number(req.params.cid)
-    const productId = Number(req.params.pid)
-    const addProduct = await cartManager.addProduct(cartId, productId)
-    if(addProduct.error){
-        return res.status(400).send({
-            error: addProduct.error
+    try {
+        const cartId = req.params.cid
+        const productId = req.params.pid
+        const addProduct = await cartManagerMongo.addProduct(cartId, productId)
+        res.send({
+            status: 'success',
+            newCart: addProduct
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            error: error.message
         })
     }
-    res.send({
-        status: 'success',
-        newCart: addProduct
-    })
 })
 
 router.post('/', async(req, res)=>{
-    const addCart = await cartManager.addCart()
+    const addCart = await cartManagerMongo.addCart()
     res.send({
         status: 'success',
         cart: addCart
