@@ -30,4 +30,8 @@ io.on('connection', (socket)=>{
     console.log("new client connected");
     app.set('socket', socket)
     app.set('io', io)
+    socket.on('login', user =>{
+        socket.emit('welcome', user)
+        socket.broadcast.emit('new-user', user)
+    })
 })

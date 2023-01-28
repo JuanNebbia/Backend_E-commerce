@@ -49,8 +49,14 @@ router.post('/', uploader.array('files'), async (req, res) =>{
     try {
         const newProduct = req.body
         if(req.files){
-            const paths = req.files.map(file => file.path)
+            const paths = req.files.map(file => {
+                return {path: file.path,
+                 originalName: file.originalname  
+                }  
+                })
             newProduct.thumbnails = paths
+        }else{
+            newProduct.thumbnails = []
         }
         if(!Object.keys(newProduct).length){
             throw new Error('Error: Missing product')

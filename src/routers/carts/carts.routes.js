@@ -9,8 +9,7 @@ const cartManagerMongo = new CartManagerMongo()
 
 router.get('/',async (req, res) =>{
     try {
-        const id = req.params.cid
-        const cart = await cartManagerMongo.getCarts(id) 
+        const cart = await cartManagerMongo.getCarts() 
         res.send({
             status: 'success',
             carts: cart

@@ -1,4 +1,20 @@
 <div>
-    <h1>hola {{name}} {{lastname}}</h1>
-    <a href="/api/chat">Chat</a>
+    <h1 class="main-title">Our products</h1>
+    <div id="product-list-container">
+        {{#each products}}
+            <div id="product-item">
+                <p id="item-title">{{title}}</p>
+                <p>{{description}}</p>
+                <p class="price-tag">${{price}}</p>
+                {{#if thumbnails}}
+                    <div class="thumbnail-container">
+                        <img src="../../statics/img/{{thumbnails.[0].originalName}}" alt="">
+                    </div>
+                {{else}}
+                    <p id="no-image">no image</p>
+                {{/if}}
+                <p class="stock-tag">{{stock}} restantes</p>
+            </div>
+        {{/each}}
+    </div>
 </div>

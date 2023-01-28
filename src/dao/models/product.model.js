@@ -34,7 +34,7 @@ const productSchema = new mongoose.Schema({
         default: true
     },
     thumbnails:{
-        type: [String],
+        type: [],
         required: true,
         default: []
     }

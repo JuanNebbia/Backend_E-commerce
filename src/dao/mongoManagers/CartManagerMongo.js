@@ -14,8 +14,9 @@ class CartManagerMongo {
 
     async getCartById(id) {
         try{
-            const cart = await cartModel.find({_id: id})
+            const cart = await cartModel.findOne({_id: id})
             return cart
+
         }
         catch(error){
             throw new Error(error.message)
