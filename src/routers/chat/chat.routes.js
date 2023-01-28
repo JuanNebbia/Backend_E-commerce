@@ -9,11 +9,18 @@ router.get('/', async (req,res)=>{
 })
 
 router.post('/', async (req,res)=>{
-    const socket = req.app.get('socket')
+    const io = req.app.get('io')
     const newMessage = req.body
     await messageModel.create(newMessage)
-    socket.emit('newMessage', newMessage)
+    io.emit('newMessage', newMessage)
+})
+
+router.delete('/', async (req,res)=>{
+    await messageModel.deleteMany()
+    const io = req.app.get('io')
+    io.emit('cleanChat', {})
 })
 
 
 module.exports = router
+

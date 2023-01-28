@@ -2,17 +2,17 @@
     <h1>Super Chat!</h1>
     <div id="chat-container">
         {{#each messages}}
-            <div style="background-color: #a0a6f8; margin:1rem">
+            <div style="background-color: #0000ff; margin:1rem; padding: 1rem">
                 <h2>{{this.user}}</h2>
                 <p>{{this.message}}</p>
             </div>
         {{/each}}
     </div>
     <form action="/api/chat" class="add-product-form" method="post" enctype="application/x-www-form-urlencoded" id="chat-form">
-        <input type="text" placeholder="user" name="user" id="user-input">
-        <input type="text" placeholder="message" name="message" id="message-input">
+        <input type="text" placeholder="message" name="message" id="message-input" required>
         <input type="submit" value="Send">
     </form>
+    <button id="clean-button">Clean Chat</button>
 </div>
 
 <script src="/socket.io/socket.io.js"></script>

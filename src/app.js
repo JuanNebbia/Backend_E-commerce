@@ -25,9 +25,9 @@ const httpServer = app.listen(PORT, ()=>{
 
 const io = new Server(httpServer)
 
-const messages = {user: "juanito", message: "Hola primo"}
 
 io.on('connection', (socket)=>{
     console.log("new client connected");
     app.set('socket', socket)
+    app.set('io', io)
 })
