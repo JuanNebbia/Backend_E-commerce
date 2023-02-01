@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const options = require('./options')
 
+
 mongoose.set('strictQuery', false)
 mongoose.connect(options.mongoDB.url, (error) => {
     if(error){

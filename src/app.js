@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended:true }))
 app.use('/statics', express.static(path.resolve(__dirname, '../public')))
 app.use('/api', apiRoutes)
-app.use('/views', viewsRoutes)
+app.use('/', viewsRoutes)
 
 app.engine('handlebars', handlebars.engine())
 app.set('views', path.resolve(__dirname, './views'));

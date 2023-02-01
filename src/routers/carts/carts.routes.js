@@ -40,9 +40,8 @@ router.get('/:cid',async (req, res) =>{
 
 router.post('/:cid/product/:pid', async(req,res)=>{
     try {
-        const cartId = req.params.cid
-        const productId = req.params.pid
-        const addProduct = await cartManagerMongo.addProduct(cartId, productId)
+        const {cid, pid} = req.params
+        const addProduct = await cartManagerMongo.addProductToCart(cid, pid)
         res.send({
             status: 'success',
             newCart: addProduct
@@ -61,6 +60,39 @@ router.post('/', async(req, res)=>{
         status: 'success',
         cart: addCart
     })
+})
+
+
+router.delete('/:cid/product/:pid', async(req,res)=>{
+    try {
+        const {cid, pid} = req.params
+        const deletedProduct = await cartManagerMongo.deleteProductFromCart(cid, pid)
+        res.send({
+            status: 'success',
+            newCart: deletedProduct
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            error: error.message
+        })
+    }
+})
+
+router.delete('/:cid', async(req,res)=>{
+    try {
+        const { cid }= req.params
+        const result = await cartManagerMongo.deleteAllProducts(cid)
+        res.send({
+            status: 'success',
+            payload: result
+        })
+    } catch (error) {
+        res.status(500).send({
+            status: "error",
+            error: error.message
+        })
+    }
 })
 
 module.exports = router

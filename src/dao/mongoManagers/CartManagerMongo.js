@@ -1,4 +1,5 @@
 const cartModel = require('../models/cart.model')
+const productModel = require('../models/product.model')
 
 class CartManagerMongo {
 
@@ -33,12 +34,40 @@ class CartManagerMongo {
         }
     }
 
-    async addProduct(cartId, productId){
+    async addProductToCart(cartId, productId){
         try {
             let cart = await this.getCartById(cartId)
+            const product = await productModel.findById(productId)
             cart.products.push({product: productId})
             let result = await cartModel.updateOne({_id:cartId}, cart) 
             return result          
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    }
+
+    async deleteProductFromCart(cartId, productId){
+        try {
+            const cart = await this.getCartById(cartId)
+            const productToDelete = cart.products.find(product => product.product == productId)
+            const index = cart.products.indexOf(productToDelete)
+            if(index < 0){
+                throw new Error('Product not found')
+            }
+            cart.products.splice(index, 1)
+            const result = cartModel.updateOne({_id:cartId}, cart)
+            return result
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    }
+
+    async deleteAllProducts(cartId){
+        try {
+            const cart = await this.getCartById(cartId)
+            cart.products = []
+            const result = cartModel.updateOne({_id:cartId}, cart)
+            return result
         } catch (error) {
             throw new Error(error.message)
         }

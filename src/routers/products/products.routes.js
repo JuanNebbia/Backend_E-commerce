@@ -10,19 +10,19 @@ const productService = new ProductManager(options.fileSystem.productsFileName)
 const productMongoService = new ProductManagerMongo()
 
 router.get('/', async (req, res)=>{
-    const limit = req.query.limit
     try {
-        const products = await productMongoService.getProducts()
-        if(!limit){
-            return res.send({
-                status: 'success',
-                data: products})
-        }
-        const limitedProducts = products.slice(0,limit)
-        res.send({
+        const products = await productMongoService.getProducts(req.query)
+        return res.send({
             status: 'success',
-            data: limitedProducts
-        })
+            payload: products.docs,
+            totalPages: products.totalPages,
+            prevPage: products.prevPage,
+            nextPage: products.nextPage,
+            page: products.page,
+            hasPrevPage: products.hasPrevPage,
+            hasNextPage: products.hasNextPage,
+            prevLink: null,
+            nexLink: null})
     } catch (error) {
         res.status(500).send({
             status: "error",
