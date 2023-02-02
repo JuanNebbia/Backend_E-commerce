@@ -14,7 +14,7 @@ body{
     justify-content: center;
 }
 
-#product-item{
+.product-item{
     background-color: #ffffff;
     padding: 0.5rem;
     min-width: 10rem;
