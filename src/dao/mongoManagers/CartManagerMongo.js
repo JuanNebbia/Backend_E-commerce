@@ -58,7 +58,7 @@ class CartManagerMongo {
         try {
             const cart = await this.getCartById(cartId)
             cart.products = newProducts
-            const result = await cartModel.updateOne({_id:cartId}, cart)
+            await cartModel.updateOne({_id:cartId}, cart)
             return newProducts
             
         } catch (error) {
