@@ -55,3 +55,11 @@ body{
 #no-image{
     color: #555;
 }
+
+#see-cart-button{
+    display: block;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: #87bebe;
+    border: 1px solid black;
+}

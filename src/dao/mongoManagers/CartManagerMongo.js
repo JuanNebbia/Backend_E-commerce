@@ -15,9 +15,8 @@ class CartManagerMongo {
 
     async getCartById(id) {
         try{
-            const cart = await cartModel.findOne({_id: id})
+            const cart = await cartModel.findById(id).lean()
             return cart
-
         }
         catch(error){
             throw new Error(error.message)
@@ -34,11 +33,20 @@ class CartManagerMongo {
         }
     }
 
-    async addProductToCart(cartId, productId){
+    async addProductToCart(cartId, productId, amount){
         try {
             let cart = await this.getCartById(cartId)
-            const product = await productModel.findById(productId)
-            cart.products.push({product: productId})
+            const Originalproduct = await productModel.findById(productId)
+            const productToAdd = cart.products.findIndex(product => product.product._id == productId)
+            if(!amount){
+                if(productToAdd < 0){
+                    cart.products.push({product: productId})
+                }else{
+                    cart.products[productToAdd].quantity ++
+                }
+            }else{
+                cart.products[productToAdd].quantity = amount
+            }
             let result = await cartModel.updateOne({_id:cartId}, cart) 
             return result          
         } catch (error) {
@@ -46,10 +54,22 @@ class CartManagerMongo {
         }
     }
 
+    async updateProducts (cartId, newProducts){
+        try {
+            const cart = await this.getCartById(cartId)
+            cart.products = newProducts
+            const result = await cartModel.updateOne({_id:cartId}, cart)
+            return newProducts
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     async deleteProductFromCart(cartId, productId){
         try {
             const cart = await this.getCartById(cartId)
-            const productToDelete = cart.products.find(product => product.product == productId)
+            const productToDelete = cart.products.find(product => product.product._id == productId)
             const index = cart.products.indexOf(productToDelete)
             if(index < 0){
                 throw new Error('Product not found')
