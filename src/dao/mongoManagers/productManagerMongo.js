@@ -4,7 +4,17 @@ class ProductManagerMongo {
     
     async getProducts({limit, page, query, sort}) {
         try {
-            const filter = (query ? {category: query} : {})
+            let filter
+            
+            if(!query){
+                filter =  {}
+            }else if(query == 'true'){
+                filter = {status: true}
+            }else if(query== 'false'){
+                filter = {status: false}
+            }else{
+                filter = {category: query}
+            }
 
             const options = {
                 sort: (sort ? {price: sort} : {}),
@@ -65,7 +75,7 @@ class ProductManagerMongo {
     async updateProduct(id, product) {
         try{
             const updatedProduct = await productModel.updateOne({_id: id}, product)
-            console.log(`${product.title} modified`)
+            console.log(`${product.title ? product.title : 'product'} modified`)
             return updatedProduct
         }
         catch(error){

@@ -63,3 +63,15 @@ body{
     background-color: #87bebe;
     border: 1px solid black;
 }
+
+.item-counter-container{
+    display: flex;
+    height: 2rem;
+    margin: 1rem;
+    align-items: center;
+    gap: 1rem;
+}
+
+.counter{
+    margin: 0
+}

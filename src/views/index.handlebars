@@ -15,6 +15,11 @@
                     <p id="no-image">no image</p>
                 {{/if}}
                 <p class="stock-tag">{{stock}} restantes</p>
+                <div class="item-counter-container">
+                    <button class="less-button-counter" onclick="decreaseAmount(event)">-</button>
+                    <p class="counter">1</p>
+                    <button class="more-button-counter" onclick="increaseAmount(event)">+</button>
+                </div>
                 <button id="add-to-cart-button" onclick="addToCart(event)">Add to cart</button>
             </div>
         {{/each}}

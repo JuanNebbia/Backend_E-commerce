@@ -56,7 +56,8 @@ router.post('/', async(req, res)=>{
 router.post('/:cid/product/:pid', async(req,res)=>{
     try {
         const {cid, pid} = req.params
-        const addProduct = await cartManagerMongo.addProductToCart(cid, pid)
+        const amount = +req.body.amount
+        const addProduct = await cartManagerMongo.addProductToCart(cid, pid, amount)
         res.send({
             status: 'success',
             newCart: addProduct
