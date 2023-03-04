@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const uploader = require('../../utils')
+const uploader = require('../../utils/multer.utils')
 const ProductManager = require('../../dao/fileManagers/ProductManager')
 const ProductManagerMongo = require('../../dao/mongoManagers/ProductManagerMongo')
 const options = require('../../config/options')

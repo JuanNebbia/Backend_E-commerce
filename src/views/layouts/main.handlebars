@@ -15,11 +15,15 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="/products">Home</a></li>
             <li><a href="/chat">Chat</a></li>
+            {{#if user}}
+            <li><button id="logout-button" class="waves-effect waves-light btn-small">Logout</button></li>
+            {{/if}}
         </ul>
         </div>
     </nav>
     {{{body}}}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="statics/js/main.js"></script>
 </body>
 </html>
