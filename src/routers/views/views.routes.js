@@ -6,7 +6,6 @@ const CartManagerMongo = require('../../dao/mongoManagers/CartManagerMongo')
 const { sessionMiddleware } = require('../../middlewares/session.middleware')
 const { authMiddleware } = require('../../middlewares/auth.middleware')
 
-
 const router = Router()
 
 const productMongoService = new ProductManagerMongo()

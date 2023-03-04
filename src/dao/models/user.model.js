@@ -20,9 +20,9 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String
     },
-    cart: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'carts'
+    githubLogin:{
+        type: String,
+        unique: true
     },
     role: {
         type: String,

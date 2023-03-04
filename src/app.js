@@ -6,6 +6,8 @@ const viewsRoutes = require('./routers/views/views.routes')
 const { Server } = require('socket.io')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
+const passport = require('passport')
+const initializePassport = require('./config/passport.config')
 require('./config/dbConfig')
 
 const PORT = 8080
@@ -30,6 +32,9 @@ app.use(session({
         ttl: 3600
     })
 }))
+initializePassport()
+app.use(passport.initialize())
+app.use(passport.session())
 
 //Main Routes
 app.use('/api', apiRoutes)
