@@ -3,7 +3,9 @@ const local = require('passport-local')
 const github = require('passport-github2')
 const userService = require('../dao/models/user.model')
 const { createHash, isValidPassword } = require('../utils/bcrypt.utils')
+const CartManagerMongo = require('../dao/mongoManagers/CartManagerMongo')
 
+const cartService = new CartManagerMongo()
 const LocalStrategy = local.Strategy
 const GithubStrategy = github.Strategy
 
@@ -22,6 +24,7 @@ const initializePassport = () =>{
             }
             try {
                 let user = await userService.findOne({email:username})
+                const cart = await cartService.addCart()
                 if(user){
                     console.log('User already exist');
                     return done(null, false)
@@ -31,7 +34,8 @@ const initializePassport = () =>{
                     lastName, 
                     email,
                     age,
-                    password: createHash(password)
+                    password: createHash(password),
+                    cart: cart._id
                 }
                 let result = await userService.create(newUser)
                 return done(null, result)

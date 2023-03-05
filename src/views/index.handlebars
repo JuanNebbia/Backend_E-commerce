@@ -10,7 +10,7 @@
         {{/if}}
     </div>
     <h1 class="main-title">Our products</h1>
-    <button id="see-cart-button" class="waves-effect waves-light btn-small" onclick="seeCart(event)">See Cart</button>
+    <button class="see-cart-button waves-effect waves-light btn-small" onclick="seeCart(event)" id={{user.cart}}>See Cart</button>
     <div id="product-list-container">
         {{#each products}}
             <div class="product-item" id={{_id}} >

@@ -17,7 +17,7 @@ router.get('/', sessionMiddleware, (req, res)=>{
 
 router.get('/register', sessionMiddleware, (req, res)=>{
     res.render('register', {
-        title: 'Sing Up!',
+        title: 'Sign Up!',
         styles: 'register.css'
     })
 })
@@ -72,7 +72,5 @@ router.get('/chat', async (req,res)=>{
         styles:"chat.css",
         messages})
 })
-
-
 
 module.exports = router

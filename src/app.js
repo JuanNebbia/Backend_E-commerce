@@ -8,11 +8,11 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
 const initializePassport = require('./config/passport.config')
+const { logGreen, logCyan, logRed } = require('./utils/console.utils')
 require('./config/dbConfig')
 
 const PORT = 8080
 const app = express()
-
 
 //Middlewares
 app.use(express.json())
@@ -46,15 +46,23 @@ app.set('views', path.resolve(__dirname, './views'));
 app.set('view engine', 'handlebars');
 
 //Server
-const httpServer = app.listen(PORT, ()=>{
-    console.log('Listening on port => ', PORT)
-})
+const server = app.listen(PORT, "127.0.0.1", () => {
+    const host = server.address().address;
+    const port = server.address().port;
+    logGreen(`Server is up and running on http://${host}:${port}`);
+});
+
+// Server error
+server.on("error", (error) => {
+    logRed("There was an error starting the server");
+    console.error(error);
+  });
 
 //Sockets
-const io = new Server(httpServer)
+const io = new Server(server)
 
 io.on('connection', (socket)=>{
-    console.log("new client connected");
+    logCyan("new client connected");
     app.set('socket', socket)
     app.set('io', io)
     socket.on('login', user =>{

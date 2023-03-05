@@ -1,7 +1,9 @@
 const productItem = document.querySelector('.product-item')
 const addToCartButton = document.getElementById('add-to-cart-button')
+const seeCartButton = document.querySelector('.see-cart-button.waves-effect.waves-light.btn-small')
 
 let currentCart;
+
 
 const addToCart = async (event) =>{
     if(!currentCart){
@@ -21,17 +23,18 @@ const addToCart = async (event) =>{
         method: 'POST',
         body: JSON.stringify({amount}),
     })
-    .then(alert('item added to cart'))
+    .then(() => alert('item added to cart'))
 
     event.target.previousElementSibling.children[1].textContent = 1
 }
 
 
 const seeCart = async (event) =>{
-    if(!currentCart){
-        return alert('cart empty')
-    }
-    window.location.href = `/cart/${currentCart}`
+    // if(!currentCart){
+    //     return alert('cart empty')
+    // }
+    // window.location.href = `/cart/${currentCart}`
+    console.log(event.target.id);
 }
 
 const decreaseAmount = (event) =>{
