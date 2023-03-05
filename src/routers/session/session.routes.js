@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const { roleMiddleware } = require('../../middlewares/role.middleware')
-const userModel = require('../../dao/models/user.model')
 const passport = require('passport')
+const { logRed } = require('../../utils/console.utils')
 
 const router = Router()
 
@@ -34,7 +34,7 @@ router.post('/login',
         req.session.user = userSession
         req.session.save(err => {
             if (err){
-                console.log('session error: ', err);
+                logRed('session error: ', err);
             } 
             else {
                 res.redirect('/products');
@@ -71,7 +71,7 @@ router.get('/logout', async (req, res)=>{
     try {
         await req.session.destroy(err => {
             if (err) {
-              console.log(err);
+              logRed(err);
             }
             else {
               res.clearCookie('start-solo');

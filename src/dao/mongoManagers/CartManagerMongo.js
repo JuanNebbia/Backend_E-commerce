@@ -1,6 +1,8 @@
 const cartModel = require('../models/cart.model')
 const productModel = require('../models/product.model')
 const { logGreen, logCyan } = require('../../utils/console.utils')
+const { HttpError } = require('../../utils/error.utils')
+const HTTP_STATUS = require('../../constants/api.constants')
 
 class CartManagerMongo {
 
@@ -26,10 +28,10 @@ class CartManagerMongo {
         const productToAdd = cart.products.findIndex(product => product.product._id == productId)
         if(productToAdd < 0){
             cart.products.push({product: productId, quantity: amount})
-            logCyan(`product ${productId} added to cart`)
         }else{
             cart.products[productToAdd].quantity += amount
         }
+        logCyan(`product ${productId} added to cart`)
         let result = await cartModel.updateOne({_id:cartId}, cart) 
         return result
     }
@@ -47,7 +49,7 @@ class CartManagerMongo {
         const productToDelete = cart.products.find(product => product.product._id == productId)
         const index = cart.products.indexOf(productToDelete)
         if(index < 0){
-            throw new Error('Product not found')
+            throw new HttpError(HTTP_STATUS.NOT_FOUND, 'Product not found')
         }
         cart.products.splice(index, 1)
         const result = cartModel.updateOne({_id:cartId}, cart)

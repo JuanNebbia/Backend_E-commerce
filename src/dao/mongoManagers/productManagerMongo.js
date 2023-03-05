@@ -1,5 +1,7 @@
 const productModel = require('../models/product.model')
 const { logCyan, logYellow } = require('../../utils/console.utils')
+const HttpError = require('../../utils/error.utils')
+const HTTP_STATUS = require('../../constants/api.constants')
 
 class ProductManagerMongo {
     
@@ -27,7 +29,7 @@ class ProductManagerMongo {
      async getProductById(id) {
         const product = await productModel.findById(id)
         if(!product){
-            throw new Error('ERROR: no product matches the specified ID')
+            throw new HttpError(HTTP_STATUS.NOT_FOUND, 'No product matches the specified ID')
         }
         return product
     }
@@ -45,7 +47,7 @@ class ProductManagerMongo {
 
     async updateProduct(id, product) {
         const updatedProduct = await productModel.updateOne({_id: id}, product)
-        logCyan(`${product.title ? product.title : 'product'} modified`)
+        logCyan(`${product.title ?? 'product'} modified`)
         return updatedProduct
     }
 

@@ -1,6 +1,7 @@
 const ProductManagerMongo = require("../dao/mongoManagers/ProductManagerMongo");
 const HTTP_STATUS = require ("../constants/api.constants.js")
-const { apiSuccessResponse } = require("../utils/api.utils.js")
+const { apiSuccessResponse } = require("../utils/api.utils.js");
+const HttpError = require("../utils/error.utils");
 
 const productsDao = new ProductManagerMongo()
 
@@ -32,6 +33,9 @@ class ProductsController{
         const { pid } = req.params
         try {
             const product = await productsDao.getProductById(pid)
+            if(!product){
+                throw new HttpError(HTTP_STATUS.NOT_FOUND, 'product not found')
+            }
             const response = apiSuccessResponse({product})
             return res.status(HTTP_STATUS.OK).json(response)
         } catch (error) {
@@ -40,8 +44,8 @@ class ProductsController{
     }
 
     static async addProduct(req,res,next) {
+        const newProduct = req.body
         try {
-            const newProduct = req.body
             if(req.files){
                 const paths = req.files.map(file => {
                     return {path: file.path,
@@ -53,11 +57,11 @@ class ProductsController{
                 newProduct.thumbnails = []
             }
             if(!Object.keys(newProduct).length){
-                throw new Error('Error: Missing product')
+                throw new HttpError(HTTP_STATUS.BAD_REQUEST, 'Missing product')
             }
             const addProduct = await productsDao.addProduct(newProduct)
             const response = apiSuccessResponse(addProduct)
-            return res.status(HTTP_STATUS.OK).json(response)
+            return res.status(HTTP_STATUS.CREATED).json(response)
         } catch (error) {
             next(error)
         }
@@ -67,7 +71,7 @@ class ProductsController{
         const productId = req.params.pid
         try {
             if(req.body.id){
-                throw new Error("No id must be provided")
+                throw new HttpError(HTTP_STATUS.BAD_REQUEST, 'No id must be provided')
             }
             const updateProduct = await productsDao.updateProduct(productId, req.body)
             const response = apiSuccessResponse(updateProduct)
@@ -78,9 +82,9 @@ class ProductsController{
     }
 
     static async deleteProduct(req, res, next){
-        const productId = req.params.pid
+        const { pid } = req.params
         try {
-            const deleteProduct = await productsDao.deleteProduct(productId)
+            const deleteProduct = await productsDao.deleteProduct(pid)
             const response = apiSuccessResponse(deleteProduct)
             return res.status(HTTP_STATUS.OK).json(response)
         } catch (error) {
