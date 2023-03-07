@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const messageModel = require('../../dao/models/message.model')
+const messageModel = require('../../models/schemas/message.model')
 
 const router = Router()
 

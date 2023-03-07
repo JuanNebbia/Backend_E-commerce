@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
+const { logRed, logCyan } = require('../utils/console.utils')
 const options = require('./options')
-
 
 mongoose.set('strictQuery', false)
 mongoose.connect(options.mongoDB.url, (error) => {
     if(error){
-        return console.log(`db connection failed: ${error}`)
+        return logRed(`db connection failed: ${error}`)
     }
-    console.log('connected to db');
+    logCyan('connected to db');
 })

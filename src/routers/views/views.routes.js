@@ -1,8 +1,8 @@
 const { Router } = require('express')
-const messageModel = require('../../dao/models/message.model')
-const productModel = require('../../dao/models/product.model')
-const ProductManagerMongo = require('../../dao/mongoManagers/ProductManagerMongo')
-const CartManagerMongo = require('../../dao/mongoManagers/CartManagerMongo')
+const messageModel = require('../../models/schemas/message.model')
+const productModel = require('../../models/schemas/product.model')
+const ProductManagerMongo = require('../../models/daos/mongo/ProductManagerMongo')
+const CartManagerMongo = require('../../models/daos/mongo/CartManagerMongo')
 const { sessionMiddleware } = require('../../middlewares/session.middleware')
 const { authMiddleware } = require('../../middlewares/auth.middleware')
 
@@ -49,13 +49,14 @@ router.get('/products', authMiddleware, async (req, res) => {
 
 router.get('/cart/:cid', async (req, res) => {
     const cartId = req.params.cid 
+    const user = req.session.user
     try {
-        const cart = await cartMongoService.getCartById(cartId)
+        const cart = await cartMongoService.getCartById(cartId);
         res.render('cart', {
             title: "Cart",
             styles:"cart.css",
-            products: cart.products,
-            cartId: cart._id
+            user,
+            cart
         })
     } catch (error) {
         res.status(500).send({

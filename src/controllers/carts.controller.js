@@ -1,4 +1,4 @@
-const CartManagerMongo = require("../dao/mongoManagers/CartManagerMongo");
+const CartManagerMongo = require("../models/daos/mongo/CartManagerMongo");
 const HTTP_STATUS = require ("../constants/api.constants.js")
 const { apiSuccessResponse } = require("../utils/api.utils.js");
 const { HttpError } = require("../utils/error.utils");
@@ -11,7 +11,7 @@ class CartsController{
         try {
             const cart = await cartsDao.getCarts() 
             const response = apiSuccessResponse(cart)
-            res.status(HTTP_STATUS.OK).json(response)
+            return res.status(HTTP_STATUS.OK).json(response)
         } catch (error) {
             next(error)
         }
@@ -43,7 +43,7 @@ class CartsController{
 
     static async addProduct(req, res, next){
         try {
-            const {cid, pid} = req.params
+            const { cid, pid } = req.params
             const amount = +req.body?.amount || 1
             const addProduct = await cartsDao.addProductToCart(cid, pid, amount)
             const response = apiSuccessResponse(addProduct)

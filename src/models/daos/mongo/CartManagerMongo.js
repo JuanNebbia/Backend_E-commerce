@@ -1,8 +1,8 @@
-const cartModel = require('../models/cart.model')
-const productModel = require('../models/product.model')
-const { logGreen, logCyan } = require('../../utils/console.utils')
-const { HttpError } = require('../../utils/error.utils')
-const HTTP_STATUS = require('../../constants/api.constants')
+const cartModel = require('../../schemas/cart.model')
+const productModel = require('../../schemas/product.model')
+const { logGreen, logCyan } = require('../../../utils/console.utils')
+const { HttpError } = require('../../../utils/error.utils')
+const HTTP_STATUS = require('../../../constants/api.constants')
 
 class CartManagerMongo {
 
@@ -23,17 +23,27 @@ class CartManagerMongo {
     }
 
     async addProductToCart(cartId, productId, amount){
-        let cart = await this.getCartById(cartId)
-        const Originalproduct = await productModel.findById(productId)
-        const productToAdd = cart.products.findIndex(product => product.product._id == productId)
-        if(productToAdd < 0){
-            cart.products.push({product: productId, quantity: amount})
-        }else{
-            cart.products[productToAdd].quantity += amount
-        }
+        const updatedCart = await cartModel.findByIdAndUpdate(cartId, {
+            $push: {
+                products: {
+                    product: productId,
+                    quantity: amount
+                }
+            }
+        })
         logCyan(`product ${productId} added to cart`)
-        let result = await cartModel.updateOne({_id:cartId}, cart) 
-        return result
+        return updatedCart
+        // let cart = await this.getCartById(cartId)
+        // const Originalproduct = await productModel.findById(productId)
+        // const productToAdd = cart.products.findIndex(product => product.product._id == productId)
+        // if(productToAdd < 0){
+        //     cart.products.push({product: productId, quantity: amount})
+        // }else{
+        //     cart.products[productToAdd].quantity += amount
+        // }
+        // logCyan(`product ${productId} added to cart`)
+        // let result = await cartModel.updateOne({_id:cartId}, cart) 
+        // return result
     }
 
     async updateProducts (cartId, newProducts){

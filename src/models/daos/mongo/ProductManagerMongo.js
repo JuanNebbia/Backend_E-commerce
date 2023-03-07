@@ -1,7 +1,7 @@
-const productModel = require('../models/product.model')
-const { logCyan, logYellow } = require('../../utils/console.utils')
-const HttpError = require('../../utils/error.utils')
-const HTTP_STATUS = require('../../constants/api.constants')
+const productModel = require('../../schemas/product.model')
+const { logCyan, logYellow } = require('../../../utils/console.utils')
+const HttpError = require('../../../utils/error.utils')
+const HTTP_STATUS = require('../../../constants/api.constants')
 
 class ProductManagerMongo {
     
@@ -11,7 +11,7 @@ class ProductManagerMongo {
             filter =  {}
         }else if(query == 'true'){
             filter = {status: true}
-        }else if(query== 'false'){
+        }else if(query == 'false'){
             filter = {status: false}
         }else{
             filter = {category: query}

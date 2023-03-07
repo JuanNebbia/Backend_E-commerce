@@ -9,6 +9,8 @@ const MongoStore = require('connect-mongo')
 const passport = require('passport')
 const initializePassport = require('./config/passport.config')
 const { logGreen, logCyan, logRed } = require('./utils/console.utils')
+const flash = require('connect-flash')
+const options = require('./config/options')
 require('./config/dbConfig')
 
 const PORT = 8080
@@ -22,19 +24,20 @@ app.use(session({
     name: 'session',
     secret:'contraseña123' ,
     cookie: {
-        maxAge: 60000 * 60,
+        maxAge: 1000 * 60 * 60 * 24,
         httpOnly: true
     },
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl: "mongodb+srv://Nebbia:Ny09yW6FPUctLMs5@ecommerce.thencen.mongodb.net/ecommerce?retryWrites=true&w=majority",
+        mongoUrl: options.mongoDB.url,
         ttl: 3600
     })
 }))
 initializePassport()
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(flash())
 
 //Main Routes
 app.use('/api', apiRoutes)
@@ -55,7 +58,7 @@ const server = app.listen(PORT, "127.0.0.1", () => {
 // Server error
 server.on("error", (error) => {
     logRed("There was an error starting the server");
-    console.error(error);
+    logRed(error);
   });
 
 //Sockets

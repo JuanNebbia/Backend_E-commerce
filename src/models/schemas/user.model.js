@@ -21,21 +21,21 @@ const userSchema = new mongoose.Schema({
         type: String
     },
     githubLogin:{
-        type: String,
-        unique: true
+        type: String
     },
     role: {
         type: String,
         enum: ['user', 'admin'],
-        default: 'user'
+        default: 'user',
+        required: true
     },
     cart: {
         type: mongoose.Schema.Types.ObjectId, 
-        ref: 'carts'
+        ref: 'carts',
+        required: true
     }
 })
 
-userSchema.plugin(mongoosePaginate)
 const userModel = mongoose.model(userCollection, userSchema)
 
 module.exports = userModel
