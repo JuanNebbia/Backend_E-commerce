@@ -2,10 +2,9 @@ const express = require('express')
 const apiRoutes = require('./routers/app.routers')
 const path = require('path')
 const handlebars = require('express-handlebars')
+const helpers = require('handlebars-helpers')
 const viewsRoutes = require('./routers/views/views.routes')
 const { Server } = require('socket.io')
-const session = require('express-session')
-const MongoStore = require('connect-mongo')
 const passport = require('passport')
 const initializePassport = require('./config/passport.config')
 const { logGreen, logCyan, logRed } = require('./utils/console.utils')
@@ -30,7 +29,12 @@ app.use('/api', apiRoutes)
 app.use('/', viewsRoutes)
 
 //Templates
-app.engine('handlebars', handlebars.engine())
+const math = helpers.math();
+app.engine('handlebars', handlebars.engine({
+    helpers: {
+        math
+    }
+}))
 app.set('views', path.resolve(__dirname, './views'));
 app.set('view engine', 'handlebars');
 

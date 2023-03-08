@@ -40,3 +40,9 @@ body{
 .quantity-tag{
     font-weight: bolder;
 }
+
+.subtotal{
+    font-size: 1.3rem;
+    margin: 0.5rem 0;
+    text-decoration: underline;
+}
