@@ -1,15 +1,22 @@
 const passport = require('passport')
 const local = require('passport-local')
 const github = require('passport-github2')
+const jwt = require('passport-jwt')
 const { createHash, isValidPassword } = require('../utils/bcrypt.utils')
 const CartManagerMongo = require('../models/daos/mongo/CartManagerMongo')
 const UserManagerMongo = require('../models/daos/mongo/UserManagerMongo')
 const { logRed } = require('../utils/console.utils')
+const { cookieExtractor } = require('../utils/session.utils')
+const { SECRET_KEY } = require('../constants/session.constants')
 
 const usersDao = new UserManagerMongo()
 const cartsDao = new CartManagerMongo()
+
 const LocalStrategy = local.Strategy
 const GithubStrategy = github.Strategy
+const JwtStrategy = jwt.Strategy
+
+const ExtractJWT = jwt.ExtractJwt
 
 const initializePassport = () =>{
     //Local Register
@@ -56,11 +63,10 @@ const initializePassport = () =>{
             try {
                 const user = await usersDao.getByEmail(username)
                 if(!user){
-                    console.log('user not found')
-                    return done(null, false)
+                    return done(null, false, 'user not found')
                 }
                 if(!isValidPassword(user, password)){
-                    return done(null, false)
+                    return done(null, false, 'wrong user or password')
                 }
                 return done(null, user)
             } catch (error) {
@@ -102,6 +108,19 @@ const initializePassport = () =>{
                 done(error)
             }
         }
+    ))
+
+    // JWT
+    passport.use('jwt', new JwtStrategy({
+        jwtFromRequest: ExtractJWT.fromExtractors([cookieExtractor]),
+        secretOrKey: SECRET_KEY
+    }, async (jwt_payload, done) =>{
+        try {
+            return done(null, jwt_payload)
+        } catch (error) {
+            return done(error)
+        }
+    }
     ))
 }
 
