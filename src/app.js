@@ -10,9 +10,10 @@ const initializePassport = require('./config/passport.config')
 const { logGreen, logCyan, logRed } = require('./utils/console.utils')
 const flash = require('connect-flash')
 const cookieParser = require('cookie-parser')
+const enviroment = require('./config/enviroment.config')
 require('./config/dbConfig')
 
-const PORT = 8080
+const PORT = enviroment.port
 const app = express()
 
 //Middlewares

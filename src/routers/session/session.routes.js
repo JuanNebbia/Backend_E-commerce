@@ -1,4 +1,5 @@
 const { Router } = require('express')
+const uploader = require('../../utils/multer.utils')
 const { roleMiddleware } = require('../../middlewares/role.middleware')
 const SessionsController = require('../../controllers/sessions.controller')
 const passportCall = require('../../middlewares/passport.middleware')
@@ -6,6 +7,7 @@ const passportCall = require('../../middlewares/passport.middleware')
 const router = Router()
 
 router.post('/register',
+    uploader.single('file'),
     passportCall('register', {failureRedirect: '/api/session/failRegister', failureFlash: true}),
     (req, res)=>res.redirect('/login')
 )

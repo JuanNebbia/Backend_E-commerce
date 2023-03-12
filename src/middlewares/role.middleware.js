@@ -1,12 +1,14 @@
+const { adminName, adminPassword } = require('../config/enviroment.config')
+
 const roleMiddleware = async (req, res, next) => {
     const { email, password } = req.body
-    if(email == "adminCoder@coder.com" && password == 'adminCod3r123'){
+    if(email == adminName && password == adminPassword){
         req.session.user = {
             name: 'admin',
             lastName: 'Coder',
-            email: 'adminCoder@coder.com',
+            email: adminName,
             age: 15,
-            password: 'adminCod3r123',
+            password: adminPassword,
             role: 'admin'
         }
         req.session.save(err => {

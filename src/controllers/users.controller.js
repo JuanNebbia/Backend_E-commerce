@@ -34,6 +34,13 @@ class UsersController{
     static async addUser(req,res,next) {
         const newUser = req.body
         try {
+            if(req.file){
+                const paths = {
+                    path: req.file.path,
+                    originalName: req.file.originalname  
+                    }  
+                newUser.profilePic = paths
+            }
             const addUser = await usersDao.addUser(newUser)
             const response = apiSuccessResponse(addUser)
             return res.status(HTTP_STATUS.CREATED).json(response)

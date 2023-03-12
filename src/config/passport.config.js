@@ -45,8 +45,15 @@ const initializePassport = () =>{
                     email,
                     age,
                     password: createHash(password),
-                    cart: cart._id
+                    cart: cart._id,
                 }
+                if(req.file){
+                    const paths = {
+                        path: req.file.path,
+                        originalName: req.file.originalname  
+                        }  
+                    newUser.profilePic = paths
+                } 
                 let result = await usersDao.addUser(newUser)
                 return done(null, result)
             } catch (error) {
