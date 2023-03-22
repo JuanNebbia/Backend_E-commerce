@@ -8,6 +8,7 @@ const UserManagerMongo = require('../models/daos/mongo/UserManagerMongo')
 const { logRed } = require('../utils/console.utils')
 const { cookieExtractor } = require('../utils/session.utils')
 const { SECRET_KEY } = require('../constants/session.constants')
+const { adminName, adminPassword } = require('./enviroment.config')
 
 const usersDao = new UserManagerMongo()
 const cartsDao = new CartManagerMongo()
@@ -68,6 +69,16 @@ const initializePassport = () =>{
         {usernameField: 'email'},
         async(username, password, done) =>{
             try {
+                if(username === adminName && password === adminPassword){
+                    const user = {
+                        firstName: 'Admin',
+                        lastName: 'Coder',
+                        email: adminName,
+                        password: adminPassword,
+                        role: 'admin'
+                    }
+                    return done(null, user)
+                }
                 const user = await usersDao.getByEmail(username)
                 if(!user){
                     return done(null, false, 'user not found')
