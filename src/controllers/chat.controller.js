@@ -9,8 +9,7 @@ class ChatController{
 
     static async getAll(req, res, next) {
         try {
-            const messages = await chatDao.getMessages()
-            const response = apiSuccessResponse(messages.docs)
+            const messages = await chatDao.getAll()
             res.render('chat', {
                 title: "Super Chat!",
                 styles:"chat.css",
@@ -27,7 +26,7 @@ class ChatController{
             if(!Object.keys(newMessage).length){
                 throw new HttpError(HTTP_STATUS.BAD_REQUEST, 'Missing message')
             }
-            const addMessage = await chatDao.addMessage(newMessage)
+            const addMessage = await chatDao.add(newMessage)
             io.emit('newMessage', newMessage)
             const response = apiSuccessResponse(addMessage)
             return res.status(HTTP_STATUS.CREATED).json(response)
@@ -41,7 +40,7 @@ class ChatController{
         const { mid } = req.params
         try {
             io.emit('deleteMessage', {})
-            const deleteMessage = await chatDao.deleteMessage(mid)
+            const deleteMessage = await chatDao.delete(mid)
             const response = apiSuccessResponse(deleteMessage)
             return res.status(HTTP_STATUS.OK).json(response)
         } catch (error) {
@@ -53,7 +52,7 @@ class ChatController{
         const io = req.app.get('io')
         try {
             io.emit('cleanChat', {})
-            const deleteMessages = await chatDao.deleteAllMessages()
+            const deleteMessages = await chatDao.deleteAll()
             const response = apiSuccessResponse(deleteMessages)
             return res.status(HTTP_STATUS.OK).json(response)
         } catch (error) {

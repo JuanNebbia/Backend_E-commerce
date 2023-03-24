@@ -5,6 +5,7 @@ const { logRed, logCyan } = require('../../../utils/console.utils')
 class MongoManager {
     static #instance = false
     constructor(){
+        mongoose.set('strictQuery', false)
         mongoose.connect(dbConfig.mongo.uri, error => {
             if(error){
                 logRed(`db connection failed: ${error}`)

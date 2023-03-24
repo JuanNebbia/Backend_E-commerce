@@ -8,23 +8,23 @@ class ChatMongoDao {
         MongoManager.connect()
     }
     
-    async getMessages() {
+    async getAll() {
         const messages = await messageModel.find().lean()
         return messages
     }
 
-    async addMessage(newMessage) {
+    async add(newMessage) {
         const message = await messageModel.create(newMessage)
         return message
     }
 
-    async deleteMessage(mid) {
+    async delete(mid) {
         const cleanChat = await messageModel.deleteOne({_id: mid})
         logYellow(`message deleted`)
         return cleanChat  
     }
 
-    async deleteAllMessages() {
+    async deleteAll() {
         const cleanChat = await messageModel.deleteMany()
         logYellow(`chat cleaned`)
         return cleanChat  
