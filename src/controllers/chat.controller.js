@@ -1,9 +1,9 @@
-const ChatManagerMongo = require("../models/daos/mongo/ChatManagerMongo");
+const ChatMongoDao = require("../models/daos/mongo/ChatMongoDao");
 const HTTP_STATUS = require ("../constants/api.constants.js")
 const { apiSuccessResponse } = require("../utils/api.utils.js");
 const HttpError = require("../utils/error.utils");
 
-const chatDao = new ChatManagerMongo()
+const chatDao = new ChatMongoDao()
 
 class ChatController{
 
