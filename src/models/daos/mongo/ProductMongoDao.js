@@ -64,4 +64,4 @@ class ProductMongoDao {
 
 }
 
-module.exports = ProductMongoDao
+module.exports = {ProductMongoDao}

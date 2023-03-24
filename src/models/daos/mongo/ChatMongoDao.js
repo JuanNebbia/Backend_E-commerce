@@ -29,7 +29,6 @@ class ChatMongoDao {
         logYellow(`chat cleaned`)
         return cleanChat  
     }
-
 }
 
 module.exports = ChatMongoDao

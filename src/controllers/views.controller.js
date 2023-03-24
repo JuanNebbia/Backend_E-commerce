@@ -1,10 +1,6 @@
-const ProductMongoDao = require('../models/daos/mongo/ProductMongoDao')
-const CartMongoDao = require('../models/daos/mongo/CartMongoDao')
-const ChatMongoDao = require('../models/daos/mongo/ChatMongoDao')
+const getDaos = require('../models/daos/factory')
 
-const productsMongoDao = new ProductMongoDao()
-const cartMongoDao = new CartMongoDao()
-const chatMongoDao = new ChatMongoDao()
+const { productsDao, cartDao, chatDao } = getDaos()
 
 class ViewsController{
 
@@ -25,7 +21,7 @@ class ViewsController{
     static async products(req, res, next) {
         const user = req.user
         try {
-            const products = await productsMongoDao.getAll(req.query)
+            const products = await productsDao.getAll(req.query)
             res.render('index', {
                 title: "E-commerce",
                 styles:"index.css",
@@ -44,7 +40,7 @@ class ViewsController{
         const cartId = req.params.cid 
         const user = req.user
         try {
-            const cart = await cartMongoDao.getById(cartId)
+            const cart = await cartDao.getById(cartId)
             res.render('cart', {
                 title: "Cart",
                 styles:"cart.css",
@@ -60,7 +56,7 @@ class ViewsController{
     }
 
     static async chat(req, res, next) {
-        const messages = await chatMongoDao.getAll()
+        const messages = await chatDao.getAll()
         res.render('chat', {
             title: "Super Chat!",
             styles:"chat.css",
