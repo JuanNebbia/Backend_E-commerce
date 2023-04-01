@@ -1,12 +1,7 @@
 const messageModel = require('../../schemas/message.model')
 const { logYellow } = require('../../../utils/console.utils')
-const MongoManager = require('../../db/mongo/mongo.manager')
 
 class ChatMongoDao {
-
-    constructor(){
-        MongoManager.connect()
-    }
     
     async getAll() {
         const messages = await messageModel.find().lean()

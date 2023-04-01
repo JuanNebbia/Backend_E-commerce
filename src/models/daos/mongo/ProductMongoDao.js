@@ -2,13 +2,8 @@ const productModel = require('../../schemas/product.model')
 const { logCyan, logYellow } = require('../../../utils/console.utils')
 const HttpError = require('../../../utils/error.utils')
 const HTTP_STATUS = require('../../../constants/api.constants')
-const MongoManager = require('../../db/mongo/mongo.manager')
 
 class ProductMongoDao {
-
-    constructor(){
-        MongoManager.connect()
-    }
     
     async getAll({limit, page, query, sort}) {
         let filter
@@ -33,9 +28,6 @@ class ProductMongoDao {
 
      async getById(id) {
         const product = await productModel.findById(id)
-        if(!product){
-            throw new HttpError(HTTP_STATUS.NOT_FOUND, 'No product matches the specified ID')
-        }
         return product
     }
 
@@ -51,6 +43,7 @@ class ProductMongoDao {
     }
 
     async updateById(id, product) {
+        console.log(product);
         const updatedProduct = await productModel.updateOne({_id: id}, product)
         logCyan(`${product.title ?? 'product'} modified`)
         return updatedProduct

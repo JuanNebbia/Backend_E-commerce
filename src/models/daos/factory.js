@@ -1,7 +1,8 @@
 const { DATA_SOURCE } = require("../../config/enviroment.config");
-const { logCyan } = require('../../utils/console.utils')
+const { logCyan } = require('../../utils/console.utils');
+const MongoManager = require("../db/mongo/mongo.manager");
 
-let cartDao, chatDao, productsDao, userDao
+let cartsDao, chatsDao, productsDao, usersDao
 
 logCyan(`Using ${DATA_SOURCE} as persistence method`)
 
@@ -10,35 +11,35 @@ switch(DATA_SOURCE){
     case "FILE": {
         const CartFileDao = require('./file/CartFileDao')
         const ProductFileDao = require('./file/ProductFileDao')
-        cartDao = new CartFileDao()
+        cartsDao = new CartFileDao()
         productsDao = new ProductFileDao()
         break;
     }
 
     case "MONGO": {
+        MongoManager.connect()
         const CartMongoDao = require('./mongo/CartMongoDao')
         const { ProductMongoDao } = require('./mongo/ProductMongoDao')
         const ChatMongoDao = require('./mongo/ChatMongoDao')
         const UserMongoDao = require('./mongo/UserMongoDao')
-        cartDao = new CartMongoDao()
+        cartsDao = new CartMongoDao()
         productsDao = new ProductMongoDao()
-        chatDao = new ChatMongoDao()
-        userDao = new UserMongoDao()
+        chatsDao = new ChatMongoDao()
+        usersDao = new UserMongoDao()
         break;
     }
- 
+
     default: {
         throw new Error('You must provide a valid persistence method')
     }
 }
 
 const getDaos = () => {
-    console.log(cartDao);
     return {
-        cartDao,
+        cartsDao,
         productsDao, 
-        chatDao,
-        userDao
+        chatsDao,
+        usersDao
     }
 }
 

@@ -1,12 +1,7 @@
 const { logCyan } = require('../../../utils/console.utils')
 const userModel = require('../../schemas/user.model')
-const MongoManager = require('../../db/mongo/mongo.manager')
 
 class UserMongoDao {
-
-    constructor(){
-        MongoManager.connect()
-    }
     
     async getAll() {
         const users = await userModel.find()
