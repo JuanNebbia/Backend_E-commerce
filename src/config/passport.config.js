@@ -9,7 +9,7 @@ const { cookieExtractor } = require('../utils/session.utils')
 const { SECRET_KEY } = require('../constants/session.constants')
 const { adminName, adminPassword } = require('./enviroment.config')
 
-const { cartDao, userDao } = getDaos()
+const { cartsDao, usersDao } = getDaos()
 
 const LocalStrategy = local.Strategy
 const GithubStrategy = github.Strategy
@@ -31,8 +31,8 @@ const initializePassport = () =>{
                 return done(null, false)
             }
             try {
-                const user = await userDao.getByEmail(username)
-                const cart = await cartDao.add()
+                const user = await usersDao.getByEmail(username)
+                const cart = await cartsDao.add()
                 if(user){
                     const message = 'User already exist'
                     logRed(message);
@@ -53,7 +53,7 @@ const initializePassport = () =>{
                         }  
                     newUser.profilePic = paths
                 } 
-                let result = await userDao.addUser(newUser)
+                let result = await usersDao.addUser(newUser)
                 return done(null, result)
             } catch (error) {
                 return done('Error getting user: ' + error)
@@ -77,7 +77,7 @@ const initializePassport = () =>{
                     }
                     return done(null, user)
                 }
-                const user = await userDao.getByEmail(username)
+                const user = await usersDao.getByEmail(username)
                 if(!user){
                     return done(null, false, 'user not found')
                 }
@@ -101,9 +101,9 @@ const initializePassport = () =>{
         async (accessToken, refreshToken, profile, done)=>{
             const userData = profile._json
             try {
-                const user = await userDao.getByEmail(userData.email)
+                const user = await usersDao.getByEmail(userData.email)
                 if(!user){
-                    const cart = await cartDao.add()
+                    const cart = await cartsDao.add()
                     const newUser = {
                         firstName: userData.name.split(' ')[0],
                         lastName: userData.name.split(' ')[1],
@@ -113,7 +113,7 @@ const initializePassport = () =>{
                         githubLogin: userData.login,
                         cart: cart._id
                     }
-                    const response = await userDao.addUser(newUser)
+                    const response = await usersDao.addUser(newUser)
                     const finalUser = response._doc
                     done(null, finalUser)
                     return
@@ -145,7 +145,7 @@ passport.serializeUser((user, done) => {
 });
   
 passport.deserializeUser(async (id, done) => {
-    const user = await userDao.getById(id)
+    const user = await usersDao.getById(id)
     done(null, user);
 });
 

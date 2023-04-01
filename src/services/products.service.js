@@ -7,19 +7,7 @@ const { productsDao } = getDaos()
 class ProductsService {
     async getProducts(filter = {}) {
         const products = await productsDao.getAll(filter)
-        const productsPayload ={
-            status: 'success',
-            payload: products.docs,
-            totalPages: products.totalPages,
-            prevPage: products.prevPage,
-            nextPage: products.nextPage,
-            page: products.page,
-            hasPrevPage: products.hasPrevPage,
-            hasNextPage: products.hasNextPage,
-            prevLink: null,
-            nexLink: null
-        }
-        return productsPayload
+        return products
     }
 
     async getProductById(pid) {

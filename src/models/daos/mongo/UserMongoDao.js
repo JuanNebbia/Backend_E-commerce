@@ -4,12 +4,12 @@ const userModel = require('../../schemas/user.model')
 class UserMongoDao {
     
     async getAll() {
-        const users = await userModel.find()
+        const users = await userModel.find().lean()
         return users
     }
 
-    async getById(id){
-        const user = await userModel.findById(id).lean()
+    async getById(uid){
+        const user = await userModel.findById(uid).lean()
         return user
     }
 
@@ -24,14 +24,14 @@ class UserMongoDao {
         return newUser
     }
 
-    async updateUser(id, payload){
-        const updatedUser = await userModel.findByIdAndUpdate((id, payload, { new: true }))
+    async updateUser(uid, payload){
+        const updatedUser = await userModel.findByIdAndUpdate((uid, payload))
         logCyan('User updated')
         return updatedUser
     }
 
-    async deleteUser(id) {
-        const deletedUser = await userModel.findByIdAndDelete(id);
+    async deleteUser(uid) {
+        const deletedUser = await userModel.findByIdAndDelete(uid);
         return deletedUser;
       }
 }
