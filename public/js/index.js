@@ -11,7 +11,7 @@ const addToCart = async (event) =>{
         headers: {
             'Content-Type': 'application/json'
         },
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify({amount}),
     })
     .then(() => alert('item added to cart'))

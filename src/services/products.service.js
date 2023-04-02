@@ -24,7 +24,7 @@ class ProductsService {
     async createProduct(productPayload, files){
         const { title, description, code, stock, price, category } = productPayload
         if(!title || !description || !code || !stock || !price || !category){
-            throw new HttpError(HTTP_STATUS.BAD_REQUEST, 'Please include all the required fields')
+            throw new HttpError('Please include all the required fields', HTTP_STATUS.BAD_REQUEST)
         }
         if(files){
             const paths = files.map(file => {

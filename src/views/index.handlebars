@@ -39,7 +39,11 @@
                     <p class="counter">1</p>
                     <button class="more-button-counter" onclick="increaseAmount(event)">+</button>
                 </div>
-                <button id="add-to-cart-button" class="waves-effect waves-light btn-small" onclick="addToCart(event)">Add to cart</button>
+                {{#if status}}
+                    <button id="add-to-cart-button" class="waves-effect waves-light btn-small" onclick="addToCart(event)">Add to cart</button>
+                {{else}}
+                    <button id="add-to-cart-button" class="waves-effect waves-light btn-small" onclick="addToCart(event)" disabled>Add to cart</button>
+                {{/if}}
             </div>
         {{/each}}
     </div>

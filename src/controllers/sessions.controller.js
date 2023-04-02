@@ -1,9 +1,8 @@
+const { SESSION_KEY } = require("../config/enviroment.config.js");
 const HTTP_STATUS = require ("../constants/api.constants.js");
-const { SESSION_KEY } = require("../constants/session.constants.js");
 const { apiSuccessResponse } = require("../utils/api.utils.js");
 const HttpError = require("../utils/error.utils");
 const { generateToken } = require("../utils/session.utils.js");
-
 
 class SessionsController{
 

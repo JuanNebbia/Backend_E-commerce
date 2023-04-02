@@ -27,7 +27,7 @@ class CartMongoDao {
                 }
             }
         })
-        logCyan(`product ${productId} added to cart`)
+        logCyan(`product ${pid} added to cart`)
         return updatedCart
     }
 

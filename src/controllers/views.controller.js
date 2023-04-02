@@ -1,6 +1,6 @@
 const getDaos = require('../models/daos/factory')
 
-const { productsDao, cartDao, chatDao } = getDaos()
+const { productsDao, cartsDao, chatsDao } = getDaos()
 
 class ViewsController{
 
@@ -40,7 +40,7 @@ class ViewsController{
         const cartId = req.params.cid 
         const user = req.user
         try {
-            const cart = await cartDao.getById(cartId)
+            const cart = await cartsDao.getById(cartId)
             res.render('cart', {
                 title: "Cart",
                 styles:"cart.css",
@@ -56,7 +56,7 @@ class ViewsController{
     }
 
     static async chat(req, res, next) {
-        const messages = await chatDao.getAll()
+        const messages = await chatsDao.getAll()
         res.render('chat', {
             title: "Super Chat!",
             styles:"chat.css",

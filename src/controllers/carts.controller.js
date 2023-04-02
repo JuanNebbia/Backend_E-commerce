@@ -1,8 +1,11 @@
 const HTTP_STATUS = require ("../constants/api.constants.js");
 const CartsService = require("../services/carts.service.js");
+const TicketsService = require("../services/tickets.service.js");
 const { apiSuccessResponse } = require("../utils/api.utils.js");
+const HttpError = require("../utils/error.utils.js");
 
 const cartsService = new CartsService()
+const ticketService = new TicketsService()
 
 class CartsController{
 
@@ -38,6 +41,7 @@ class CartsController{
     }
 
     static async addProduct(req, res, next){
+        console.log('hola');
         try {
             const { cid, pid } = req.params
             const amount = +req.body?.amount || 1
@@ -65,6 +69,19 @@ class CartsController{
         try {
             const emptyCart = await cartsService.clearCart(cid)
             const response = apiSuccessResponse(emptyCart)
+            res.status(HTTP_STATUS.OK).json(response)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async purchase(req, res, next){
+        const { cid } = req.params
+        try {
+            const cart = await cartsService.getCartById(cid)
+            const payload = cart.products
+            const ticket = await ticketService.createTicket(cid, payload)
+            const response = apiSuccessResponse(ticket)
             res.status(HTTP_STATUS.OK).json(response)
         } catch (error) {
             next(error)

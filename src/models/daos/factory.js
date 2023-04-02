@@ -2,7 +2,7 @@ const { DATA_SOURCE } = require("../../config/enviroment.config");
 const { logCyan } = require('../../utils/console.utils');
 const MongoManager = require("../db/mongo/mongo.manager");
 
-let cartsDao, chatsDao, productsDao, usersDao
+let cartsDao, chatsDao, productsDao, usersDao, ticketsDao
 
 logCyan(`Using ${DATA_SOURCE} as persistence method`)
 
@@ -22,10 +22,12 @@ switch(DATA_SOURCE){
         const { ProductMongoDao } = require('./mongo/ProductMongoDao')
         const ChatMongoDao = require('./mongo/ChatMongoDao')
         const UserMongoDao = require('./mongo/UserMongoDao')
+        const { TicketMongoDao } = require("./mongo/TicketMongoDao.js");
         cartsDao = new CartMongoDao()
         productsDao = new ProductMongoDao()
         chatsDao = new ChatMongoDao()
         usersDao = new UserMongoDao()
+        ticketsDao = new TicketMongoDao()
         break;
     }
 
@@ -39,7 +41,8 @@ const getDaos = () => {
         cartsDao,
         productsDao, 
         chatsDao,
-        usersDao
+        usersDao,
+        ticketsDao
     }
 }
 

@@ -6,8 +6,8 @@ const { createHash, isValidPassword } = require('../utils/bcrypt.utils')
 const getDaos = require('../models/daos/factory')
 const { logRed } = require('../utils/console.utils')
 const { cookieExtractor } = require('../utils/session.utils')
-const { SECRET_KEY } = require('../constants/session.constants')
-const { adminName, adminPassword } = require('./enviroment.config')
+const { SECRET_KEY } = require("../config/enviroment.config.js")
+const { ADMIN_NAME, ADMIN_PASSWORD } = require('./enviroment.config')
 
 const { cartsDao, usersDao } = getDaos()
 
@@ -67,7 +67,7 @@ const initializePassport = () =>{
         {usernameField: 'email'},
         async(username, password, done) =>{
             try {
-                if(username === adminName && password === adminPassword){
+                if(username === ADMIN_NAME && password === ADMIN_PASSWORD){
                     const user = {
                         firstName: 'Admin',
                         lastName: 'Coder',
