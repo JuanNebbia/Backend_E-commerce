@@ -71,9 +71,10 @@ const initializePassport = () =>{
                     const user = {
                         firstName: 'Admin',
                         lastName: 'Coder',
-                        email: adminName,
-                        password: adminPassword,
-                        role: 'admin'
+                        email: ADMIN_NAME,
+                        password: ADMIN_PASSWORD,
+                        role: 'admin',
+                        cart: '640e0351f496d9111957b2de'
                     }
                     return done(null, user)
                 }
@@ -132,7 +133,17 @@ const initializePassport = () =>{
         secretOrKey: SECRET_KEY
     }, async (jwt_payload, done) =>{
         try {
-            return done(null, jwt_payload)
+            newPayload = {
+                _id: jwt_payload._id,
+                firstName: jwt_payload.firstName,
+                lastName: jwt_payload.lastName,
+                email: jwt_payload.email,
+                age: jwt_payload.age,
+                role: jwt_payload.role,
+                cart: jwt_payload.cart,
+                profilePic: jwt_payload.profilePic
+            }
+            return done(null, newPayload)
         } catch (error) {
             return done(error)
         }
