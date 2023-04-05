@@ -39,7 +39,7 @@ class UsersService {
     }
 
     async updateUser(uid, payload){
-        if(!uid || !Object.keys(payload).lenght){
+        if(!uid || !Object.keys(payload).length){
             throw new HttpError('Missing data for user', HTTP_STATUS.BAD_REQUEST)
         }
         const user = await usersDao.getById(uid)

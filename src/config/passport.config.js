@@ -8,6 +8,7 @@ const { logRed } = require('../utils/console.utils')
 const { cookieExtractor } = require('../utils/session.utils')
 const { SECRET_KEY } = require("../config/enviroment.config.js")
 const { ADMIN_NAME, ADMIN_PASSWORD } = require('./enviroment.config')
+const { AddUserDTO, GetUserDTO } = require('../models/dtos/users.dto.js')
 
 const { cartsDao, usersDao } = getDaos()
 
@@ -53,7 +54,8 @@ const initializePassport = () =>{
                         }  
                     newUser.profilePic = paths
                 } 
-                let result = await usersDao.addUser(newUser)
+                const userPayload = new AddUserDTO(newUser)
+                let result = await usersDao.addUser(userPayload)
                 return done(null, result)
             } catch (error) {
                 return done('Error getting user: ' + error)
@@ -69,8 +71,8 @@ const initializePassport = () =>{
             try {
                 if(username === ADMIN_NAME && password === ADMIN_PASSWORD){
                     const user = {
-                        firstName: 'Admin',
-                        lastName: 'Coder',
+                        first_name: 'Admin',
+                        last_name: 'Coder',
                         email: ADMIN_NAME,
                         password: ADMIN_PASSWORD,
                         role: 'admin',
@@ -114,7 +116,8 @@ const initializePassport = () =>{
                         githubLogin: userData.login,
                         cart: cart._id
                     }
-                    const response = await usersDao.addUser(newUser)
+                    const userPayload = new AddUserDTO(newUser)
+                    const response = await usersDao.addUser(userPayload)
                     const finalUser = response._doc
                     done(null, finalUser)
                     return
@@ -133,17 +136,8 @@ const initializePassport = () =>{
         secretOrKey: SECRET_KEY
     }, async (jwt_payload, done) =>{
         try {
-            newPayload = {
-                _id: jwt_payload._id,
-                firstName: jwt_payload.firstName,
-                lastName: jwt_payload.lastName,
-                email: jwt_payload.email,
-                age: jwt_payload.age,
-                role: jwt_payload.role,
-                cart: jwt_payload.cart,
-                profilePic: jwt_payload.profilePic
-            }
-            return done(null, newPayload)
+            const userPayload = new GetUserDTO(jwt_payload)
+            return done(null, userPayload)
         } catch (error) {
             return done(error)
         }

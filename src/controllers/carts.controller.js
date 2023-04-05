@@ -41,7 +41,6 @@ class CartsController{
     }
 
     static async addProduct(req, res, next){
-        console.log('hola');
         try {
             const { cid, pid } = req.params
             const amount = +req.body?.amount || 1
@@ -76,11 +75,12 @@ class CartsController{
     }
 
     static async purchase(req, res, next){
+        const purchaser = req.user
         const { cid } = req.params
         try {
             const cart = await cartsService.getCartById(cid)
             const payload = cart.products
-            const ticket = await ticketService.createTicket(cid, payload)
+            const ticket = await ticketService.createTicket(cid, payload, purchaser)
             const response = apiSuccessResponse(ticket)
             res.status(HTTP_STATUS.OK).json(response)
         } catch (error) {

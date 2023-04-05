@@ -22,7 +22,7 @@ class TicketsService {
         return ticket
     }
 
-    async createTicket(cid, payload){
+    async createTicket(cid, payload, purchaser){
         if(!cid){
             throw new HttpError('Missing param', HTTP_STATUS.BAD_REQUEST)
         }
@@ -51,9 +51,9 @@ class TicketsService {
             throw new HttpError('Not enough stock for purchase any product', HTTP_STATUS.BAD_REQUEST)
         }
         const fullPayload = {
-            purchaser: 'Eusbio',
+            purchaser: purchaser.email,
             purchase_datetime: new Date(),
-            code: `${Math.floor(Math.random()*1e8)}`,
+            code: `${Math.floor(Math.random()*1e10)}`,
             amount
         }
         const newTicket = await ticketsDao.create(fullPayload)
