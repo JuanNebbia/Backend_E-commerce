@@ -6,7 +6,7 @@ const cartId = seeCartButton.id
 
 const addToCart = async (event) =>{
     try {
-        const productId = event.target.parentNode.getAttribute('id')
+        const productId = event.target.parentNode.parentNode.getAttribute('id')
         const amount = event.target.previousElementSibling.children[1].textContent
         const addedProduct = await fetch(`/api/carts/${cartId}/product/${productId}`, {
             headers: {
@@ -40,7 +40,7 @@ const decreaseAmount = (event) =>{
 }
 
 const increaseAmount = (event) =>{
-    const stock = +event.target.parentNode.previousElementSibling.textContent.split(' ')[0]
+    const stock = +event.target.parentNode.parentNode.previousElementSibling.textContent.split(' ')[0]
     const amount = +event.target.previousElementSibling.textContent
     if(amount < stock){
         event.target.previousElementSibling.textContent = amount + 1

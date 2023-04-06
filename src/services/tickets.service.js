@@ -1,6 +1,7 @@
 const HTTP_STATUS = require("../constants/api.constants.js");
 const getDaos = require("../models/daos/factory.js");
 const { UpdateProductDTO } = require("../models/dtos/products.dto.js");
+const { GetTicketDTO, AddTicketDTO } = require("../models/dtos/ticket.dto.js");
 const { logYellow } = require("../utils/console.utils.js");
 const HttpError = require("../utils/error.utils.js");
 
@@ -9,6 +10,10 @@ const { ticketsDao, cartsDao, productsDao } = getDaos()
 class TicketsService {
     async getTickets() {
         const tickets = await ticketsDao.getAll()
+        const ticketsPayloadDTO = []
+        tickets.forEach(ticket => {
+            ticketsPayloadDTO.push(new GetTicketDTO(ticket))
+        })
         return tickets
     }
 
@@ -20,7 +25,8 @@ class TicketsService {
         if(!ticket){
             throw new HttpError('Ticket not found', HTTP_STATUS.NOT_FOUND)
         }
-        return ticket
+        const ticketPayloadDTO = new GetTicketDTO(ticket)
+        return ticketPayloadDTO
     }
 
     async createTicket(cid, payload, purchaser){
@@ -52,13 +58,8 @@ class TicketsService {
         if(!amount){
             throw new HttpError('Not enough stock for purchase any product', HTTP_STATUS.BAD_REQUEST)
         }
-        const fullPayload = {
-            purchaser: purchaser.email,
-            purchase_datetime: new Date(),
-            code: `${Math.floor(Math.random()*1e10)}`,
-            amount
-        }
-        const newTicket = await ticketsDao.create(fullPayload)
+        const ticketPayloadDTO = new AddTicketDTO(purchaser, amount)
+        const newTicket = await ticketsDao.create(ticketPayloadDTO)
         return newTicket
     }
 
