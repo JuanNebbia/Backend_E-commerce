@@ -14,7 +14,7 @@ class TicketsService {
         tickets.forEach(ticket => {
             ticketsPayloadDTO.push(new GetTicketDTO(ticket))
         })
-        return tickets
+        return ticketsPayloadDTO
     }
 
     async getTicketById(tid) {
@@ -40,7 +40,6 @@ class TicketsService {
         await payload.forEach( async item => {
             if(item.quantity > item.product.stock){
                 logYellow(`Not enough stock for this item ${item.product.title} with id: ${item.product._id}`);
-                notSold.push(item)
             }else{
                 payload.totalPrice += item.quantity * item.product.price
                 await cartsDao.deleteProductFromCart(cid, item.product._id)
@@ -58,7 +57,7 @@ class TicketsService {
         if(!amount){
             throw new HttpError('Not enough stock for purchase any product', HTTP_STATUS.BAD_REQUEST)
         }
-        const ticketPayloadDTO = new AddTicketDTO(purchaser, amount)
+        const ticketPayloadDTO = new AddTicketDTO(purchaser, amount, payload)
         const newTicket = await ticketsDao.create(ticketPayloadDTO)
         return newTicket
     }

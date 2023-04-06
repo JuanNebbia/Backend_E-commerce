@@ -29,3 +29,11 @@
     font-size: 0.9rem;
     color: #333;
 }
+
+.product-item-ticket{
+    background-color: #fccc85;
+    display: flex;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+}
