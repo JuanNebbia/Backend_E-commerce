@@ -22,7 +22,7 @@
     <button class="see-cart-button waves-effect waves-light btn-small" onclick="seeCart(event)" id={{user.cart}}>See Cart</button>
     <div id="product-list-container">
         {{#each products}}
-            <div class="product-item" id={{_id}} >
+            <div class="product-item" id={{id}} >
                 <p id="item-title">{{title}}</p>
                 <p>{{description}}</p>
                 <p class="price-tag">${{price}}</p>
@@ -33,7 +33,9 @@
                 {{else}}
                     <p id="no-image">no image</p>
                 {{/if}}
-                <p class="stock-tag">{{stock}} restantes</p>
+                {{#if stock}}
+                    <p class="stock-tag">{{stock}} in stock</p>
+                {{/if}}
                 <div class="item-counter-container">
                     <button class="less-button-counter" onclick="decreaseAmount(event)">-</button>
                     <p class="counter">1</p>

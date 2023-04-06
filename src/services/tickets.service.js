@@ -1,5 +1,6 @@
 const HTTP_STATUS = require("../constants/api.constants.js");
 const getDaos = require("../models/daos/factory.js");
+const { UpdateProductDTO } = require("../models/dtos/products.dto.js");
 const { logYellow } = require("../utils/console.utils.js");
 const HttpError = require("../utils/error.utils.js");
 
@@ -42,7 +43,8 @@ class TicketsService {
                 if (updateProductPayload.stock === 0){
                     updateProductPayload.status = false
                 }
-                await productsDao.updateById(item.product._id, updateProductPayload)
+                const productPayloadDTO = new UpdateProductDTO(updateProductPayload)
+                await productsDao.updateById(item.product._id, productPayloadDTO)
                 logYellow(`Item ${item.product.title} deleted from cart: ${cid}`);
             }
         })

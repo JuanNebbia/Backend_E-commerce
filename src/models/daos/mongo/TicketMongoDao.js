@@ -4,12 +4,12 @@ const HTTP_STATUS = require('../../../constants/api.constants')
 class TicketMongoDao {
     
     async getAll() {
-        const tickets = await ticketModel.find()
+        const tickets = await ticketModel.find().lean()
         return tickets
     }
 
      async getById(tid) {
-        const ticket = await ticketModel.findById(tid)
+        const ticket = await ticketModel.findById(tid).lean()
         return ticket
     }
 

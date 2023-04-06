@@ -52,7 +52,6 @@ class UsersController{
         const payload = req.body
         try {
             const userPayload = new UpdateUserDTO(payload)
-            console.log(userPayload);
             const updatedUser = await usersService.updateUser(uid, userPayload)
             const response = apiSuccessResponse(updatedUser)
             return res.status(HTTP_STATUS.OK).json(response)

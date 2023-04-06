@@ -1,9 +1,8 @@
 const getDaos = require('../models/daos/factory')
 const HTTP_STATUS = require ("../constants/api.constants.js")
 const { apiSuccessResponse } = require("../utils/api.utils.js");
-const HttpError = require("../utils/error.utils");
 const ProductsService = require('../services/products.service.js');
-const { AddProductDTO, GetProductDTO } = require('../models/dtos/products.dto.js');
+const { AddProductDTO, GetProductDTO, UpdateProductDTO } = require('../models/dtos/products.dto.js');
 
 const productsService = new ProductsService()
 
@@ -13,11 +12,6 @@ class ProductsController{
         const filter = req.query
         try {
             const products = await productsService.getProducts(filter)
-            const productsPayloadDTO = []
-            products.docs.forEach(product => {
-                productsPayloadDTO.push(new GetProductDTO(product))
-            });
-            products.docs = productsPayloadDTO
             const response = apiSuccessResponse(products)
             return res.status(HTTP_STATUS.OK).json(response)
         } catch (error) {
@@ -29,8 +23,7 @@ class ProductsController{
         const { pid } = req.params
         try {
             const product = await productsService.getProductById(pid)
-            const productPayloadDTO = new GetProductDTO(product)
-            const response = apiSuccessResponse({productPayloadDTO})
+            const response = apiSuccessResponse({product})
             return res.status(HTTP_STATUS.OK).json(response)
         } catch (error) {
             next(error)
@@ -41,8 +34,7 @@ class ProductsController{
         const productPayload = req.body
         const { files } = req
         try {
-            const productPayloadDTO = new AddProductDTO(productPayload)
-            const addProduct = await productsService.createProduct(productPayloadDTO, files)
+            const addProduct = await productsService.createProduct(productPayload, files)
             const response = apiSuccessResponse(addProduct)
             return res.status(HTTP_STATUS.CREATED).json(response)
         } catch (error) {
