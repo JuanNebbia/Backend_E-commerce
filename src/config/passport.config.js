@@ -9,6 +9,9 @@ const { cookieExtractor } = require('../utils/session.utils')
 const { SECRET_KEY } = require("../config/enviroment.config.js")
 const { ADMIN_NAME, ADMIN_PASSWORD } = require('./enviroment.config')
 const { AddUserDTO, GetUserDTO } = require('../models/dtos/users.dto.js')
+const CustomError = require('../utils/customError.js')
+const { generateUserErrorInfo } = require('../utils/error.info.js')
+const HTTP_STATUS = require('../constants/api.constants.js')
 
 const { cartsDao, usersDao } = getDaos()
 
@@ -29,6 +32,23 @@ const initializePassport = () =>{
             const { firstName, lastName, email, age } = req.body
             if(!firstName || !lastName || !age || !email || !password){
                 logRed('missing fields');
+                CustomError.createError({
+                    name: "User creation error",
+                    cause: generateUserErrorInfo({firstName, lastName, age, email}),
+                    message: "Error trying to create user",
+                    code: HTTP_STATUS.BAD_REQUEST
+                })
+                return done(null, false)
+            }
+            const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+            if(!email.match(validRegex)){
+                logRed('not valid email');
+                CustomError.createError({
+                    name: "User creation error",
+                    cause: generateUserErrorInfo({firstName, lastName, age, email}),
+                    message: "Email adress not valid",
+                    code: HTTP_STATUS.BAD_REQUEST
+                })
                 return done(null, false)
             }
             try {
@@ -136,6 +156,7 @@ const initializePassport = () =>{
         secretOrKey: SECRET_KEY
     }, async (jwt_payload, done) =>{
         try {
+            console.log(jwt_payload);
             const userPayload = new GetUserDTO(jwt_payload)
             return done(null, userPayload)
         } catch (error) {
