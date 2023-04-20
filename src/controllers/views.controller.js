@@ -73,7 +73,6 @@ class ViewsController{
         const { tid } = req.params 
         try{
             const ticket = await ticketsService.getTicketById(tid)
-            console.log(ticket);
             res.render('ticket', {
                 title: "Purchase Ticket",
                 styles:"ticket.css",
