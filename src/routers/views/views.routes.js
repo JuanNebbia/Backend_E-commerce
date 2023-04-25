@@ -20,13 +20,17 @@ router.get('/login',
     ViewsController.login
 )
 
+router.get('/login/recover',
+    sessionMiddleware,
+    ViewsController.recover)
+
 router.get('/products',
     authMiddleware,
     passportCall('jwt'),
     ViewsController.products
 )
 
-router.get('/cart/:cid', 
+router.get('/cart/:cid',
     authMiddleware,
     passportCall('jwt'),
     ViewsController.cart

@@ -16,6 +16,10 @@
     text-decoration: underline;
 }
 
+.login-submit{
+    color: #fff;
+}
+
 .signup-anchor:hover{
     color: #2865e7;
 }
