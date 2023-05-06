@@ -3,6 +3,9 @@ const HTTP_STATUS = require ("../constants/api.constants.js")
 const { apiSuccessResponse } = require("../utils/api.utils.js");
 const { AddUserDTO, GetUserDTO, UpdateUserDTO } = require('../models/dtos/users.dto.js')
 const UsersService = require('../services/users.service.js');
+const jwt = require('jsonwebtoken');
+const { SECRET_KEY } = require('../config/enviroment.config.js');
+const HttpError = require('../utils/error.utils.js');
 
 const usersService = new UsersService()
 
@@ -34,6 +37,18 @@ class UsersController{
         }
     }
 
+    static async getByEmail(req, res, next) {
+        const { email } = req.params
+        try {
+            const user = await usersService.getByEmail(email)
+            const userPayload = new GetUserDTO(user)
+            const response = apiSuccessResponse(userPayload)
+            return res.status(HTTP_STATUS.OK).json(response)
+        } catch (error) {
+            next(error)
+        }
+    }
+
     static async addUser(req, res, next) {
         const payload = req.body
         const { file } = req
@@ -55,6 +70,27 @@ class UsersController{
             const userPayload = new UpdateUserDTO(payload)
             const updatedUser = await usersService.updateUser(uid, userPayload)
             req.logger.info('User updated')
+            const response = apiSuccessResponse(updatedUser)
+            return res.status(HTTP_STATUS.OK).json(response)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async updatePassword(req, res, next){
+        const { password, token } = req.body
+        try {
+            let email
+            jwt.verify(token, SECRET_KEY, (error, decodedToken) => {
+                if (error) {
+                    req.logger.info('Invalid Token:', error.message);
+                    throw new HttpError('Expired token', HTTP_STATUS.FORBIDDEN)
+                } else {
+                    email = decodedToken.email
+                }
+            });
+            const updatedUser = await usersService.updatePassword(email, password, token)
+            req.logger.info('Password updated')
             const response = apiSuccessResponse(updatedUser)
             return res.status(HTTP_STATUS.OK).json(response)
         } catch (error) {

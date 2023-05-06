@@ -5,4 +5,5 @@ const router = Router()
 
 router.post('/', MailController.sendEmail)
 
+
 module.exports = router

@@ -48,4 +48,8 @@ router.get('/ticket/:tid',
     ViewsController.ticket
 )
 
+router.get('/newpasswordform',
+    ViewsController.passwordForm
+)
+
 module.exports = router
