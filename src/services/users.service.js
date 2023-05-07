@@ -82,6 +82,26 @@ class UsersService {
         return updatedUser
     }
 
+    async updateUserRole(uid){
+        if(!uid){
+            throw new HttpError('Must provide an id', HTTP_STATUS.BAD_REQUEST)
+        }
+        const user = await usersDao.getById(uid)
+        if(!user){
+            throw new HttpError('User not found', HTTP_STATUS.NOT_FOUND)
+        }
+        let newRole = {}
+        if(user.role === 'user'){
+            newRole.role = 'premium'
+        }
+        if(user.role === 'premium'){
+            newRole.role = 'user'
+        }
+        const updatedUser = await usersDao.updateUser(user._id, newRole)
+        return updatedUser
+
+    }
+
     async deleteUser(uid){
         if(!uid){
             throw new HttpError('Must provide an id', HTTP_STATUS.BAD_REQUEST)
