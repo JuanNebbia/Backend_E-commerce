@@ -14,9 +14,24 @@ const flash = require('connect-flash')
 const cookieParser = require('cookie-parser')
 const { PORT } = require('./config/enviroment.config')
 const addLogger = require('./middlewares/logger.middleware.js')
+const swaggerJSDoc = require('swagger-jsdoc')
+const swaggerUiExpress = require('swagger-ui-express')
 
 const app = express()
 
+// Swagger documentation
+const swaggerOptions = {
+    definition: {
+        openapi: '3.0.1',
+        info: {
+            title: 'E-commerce Documentation',
+            description: "Main project for Coderhouse's Backend course"
+        }
+    },
+    apis: [`${__dirname}/docs/*/*.yaml`]
+}
+const specs = swaggerJSDoc(swaggerOptions)
+app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
 
 //Middlewares
 app.use(express.json())

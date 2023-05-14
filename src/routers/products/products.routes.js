@@ -6,7 +6,7 @@ const passportCall = require('../../middlewares/passport.middleware.js')
 
 const router = Router()
 
-router.get('/',ProductsController.getAll)
+router.get('/', ProductsController.getAll)
 router.get('/:pid', ProductsController.getById)
 router.post('/', passportCall('jwt'), roleMiddleware(['admin', 'premium']), uploader.array('files'), ProductsController.addProduct)
 router.put('/:pid', passportCall('jwt'), roleMiddleware(['admin']), ProductsController.updateProduct)
