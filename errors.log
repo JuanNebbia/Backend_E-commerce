@@ -1,52 +1,14 @@
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"Email and password are required","status":400}}
-{"level":"error","message":{"description":"Email and password are required","status":400}}
-{"level":"error","message":{"description":"Email and password are required","status":400}}
-{"level":"error","message":{"description":"Email and password are required","status":400}}
-{"level":"error","message":{"description":"Email and password are required","status":400}}
-{"level":"error","message":{"description":"Email and password are required","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":403}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":403}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":403}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":403}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":403}}
-{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":403}}
-{"level":"error","message":{"description":403,"status":500}}
-{"level":"error"}
-{"level":"error"}
-{"level":"error","message":{"description":"Expired token","status":400}}
-{"level":"error","message":{"description":"Expired token","status":403}}
-{"level":"error","message":{"description":"Please include all the required fields","status":400}}
-{"level":"error","message":{"description":"Please include all the required fields","status":400}}
-{"level":"error","message":{"description":"Please include all the required fields","status":400}}
-{"level":"error","message":{"description":"Product not found","status":404}}
-{"code":11000,"index":0,"keyPattern":{"code":1},"keyValue":{"code":"1drg416er"},"level":"error"}
-{"level":"error","message":{"description":"Only product's owner can delete this resource","status":403}}
+{"level":"error","message":"Unable to create user, email already registered"}
+{"level":"error","message":"Unable to create user, email already registered"}
+{"code":11000,"index":0,"keyPattern":{"code":1},"keyValue":{"code":"mockcode"},"level":"error"}
+{"level":"error","message":{"description":"Can not add own products","status":403}}
+{"level":"error","message":{"description":"Can not add own products","status":403}}
+{"level":"error","message":{"description":"Can not add own products","status":403}}
+{"level":"error","message":{"description":"Can not add own products","status":403}}
+{"level":"error","message":{"description":"Can not add own products","status":403}}
+{"level":"error","message":{"description":"Can not add own products","status":403}}
+{"level":"error","message":{"description":"Can not add own products","status":403}}
+{"level":"error","message":{"description":"Can not add own products","status":403}}
+{"level":"error","message":{"description":"Can not add own products","status":403}}
+{"level":"error","message":{"description":"Can not add own products","status":403}}
 {"level":"error","message":{"description":"Can not add own products","status":403}}
