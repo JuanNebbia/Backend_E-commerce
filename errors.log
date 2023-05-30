@@ -12,3 +12,8 @@
 {"level":"error","message":{"description":"Can not add own products","status":403}}
 {"level":"error","message":{"description":"Can not add own products","status":403}}
 {"level":"error","message":{"description":"Can not add own products","status":403}}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error","message":{"description":"Missing data for user","status":400}}
+{"level":"error"}

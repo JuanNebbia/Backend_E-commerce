@@ -35,6 +35,17 @@ const userSchema = new mongoose.Schema({
     },
     profile_pic:{
         type: Object
+    },
+    documents: {
+        type: [
+            {
+                name: String,
+                reference: String
+            }
+        ]
+    },
+    last_connection: {
+        type: Date
     }
 })
 

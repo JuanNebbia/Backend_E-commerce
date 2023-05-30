@@ -26,7 +26,7 @@ const initializePassport = () =>{
             usernameField: 'email'
         },
         async (req, username, password, done)=>{
-            const { firstName, lastName, email, age } = req.body
+            const { firstName, lastName, email, age, documents } = req.body
             if(!firstName || !lastName || !age || !email || !password){
                 req.logger.error('Missing fields')
                 return done(null, false)
@@ -45,6 +45,8 @@ const initializePassport = () =>{
                     age,
                     password: createHash(password),
                     cart: cart._id,
+                    lastConnection: new Date(),
+                    documents
                 }
                 if(req.file){
                     const paths = {
@@ -115,7 +117,9 @@ const initializePassport = () =>{
                         email: userData.email || ' ',
                         password: ' ',
                         githubLogin: userData.login,
-                        cart: cart._id
+                        cart: cart._id,
+                        lastConnection: new Date(),
+                        documents
                     }
                     const userPayload = new AddUserDTO(newUser)
                     const response = await usersDao.addUser(userPayload)
