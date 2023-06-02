@@ -10,6 +10,7 @@ class GetUserDTO{
         this.cart = payload.cart
         this.profilePic = payload.profile_pic
         this.lastConnection = payload.last_connection
+        this.documents = payload.documents
     }
 }
 

@@ -17,3 +17,25 @@
 {"level":"error"}
 {"level":"error","message":{"description":"Missing data for user","status":400}}
 {"level":"error"}
+{"level":"error","message":{"description":"Missing data for user","status":400}}
+{"level":"error","message":{"description":"Missing data for user","status":400}}
+{"level":"error","message":{"description":"Missing data for user","status":400}}
+{"level":"error","message":{"description":"Missing data for user","status":400}}
+{"level":"error","message":{"description":"Missing data for user","status":400}}
+{"level":"error","message":{"description":"Missing data for user","status":400}}
+{"level":"error","message":{"description":"Missing data for user","status":400}}
+{"code":11000,"index":0,"keyPattern":{"code":1},"keyValue":{"code":"d56bt4ev"},"level":"error"}
+{"code":"ENOENT","errno":-4058,"level":"error","path":"D:\\Programación\\Coderhouse\\Backend\\Entregables\\00-Proyecto-Final\\public\\products\\_DSC6806-Mejorado-NR.jpg","storageErrors":[],"syscall":"open"}
+{"level":"error","message":{"description":"Product not found","status":404}}
+{"level":"error","message":{"description":"Missing data for user","status":400}}
+{"code":"LIMIT_UNEXPECTED_FILE","field":"documento 1","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
+{"code":"LIMIT_UNEXPECTED_FILE","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
+{"code":"LIMIT_UNEXPECTED_FILE","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
+{"code":"LIMIT_UNEXPECTED_FILE","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
+{"code":"LIMIT_UNEXPECTED_FILE","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
+{"code":"LIMIT_UNEXPECTED_FILE","level":"error","message":"Unexpected field","name":"MulterError","storageErrors":[]}
+{"level":"error"}
+{"level":"error","message":{"description":"Missing document","status":400}}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}

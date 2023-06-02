@@ -13,7 +13,7 @@
         {{#if user.profilePic}}
             <div class="pic-section">
                 <div class="profile-pic-container">
-                    <img src="../../statics/img/{{user.profilePic.originalName}}" alt="">
+                    <img src="../../statics/profiles/{{user.profilePic.originalName}}" alt="">
                 </div>
             </div>
         {{/if}}
@@ -28,7 +28,7 @@
                 <p class="price-tag">${{price}}</p>
                 {{#if thumbnails}}
                     <div class="thumbnail-container">
-                        <img src="../../statics/img/{{thumbnails.[0].originalName}}" alt="">
+                        <img src="../../statics/products/{{thumbnails.[0].originalName}}" alt="">
                     </div>
                 {{else}}
                     <p id="no-image">no image</p>

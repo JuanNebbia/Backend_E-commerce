@@ -16,7 +16,9 @@ class SessionsController{
                 req.logger.error('User not found')
                 throw new HttpError(HTTP_STATUS.BAD_REQUEST, 'User not found')
             }
-            await usersService.updateUser(user._id, { last_connection : new Date() })
+            if(user.role !== 'admin'){
+                await usersService.updateUser(user._id, { last_connection : new Date() })
+            }
             const access_token = generateToken(user);
             res.cookie(SESSION_KEY, access_token, {
               maxAge: 60 * 60 * 24 * 1000,

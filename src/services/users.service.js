@@ -50,6 +50,38 @@ class UsersService {
         return newUser
     }
 
+    async addDocuments(uid, file, doctype){
+        if(!file){
+            throw new HttpError('Missing document', HTTP_STATUS.BAD_REQUEST)
+        }
+        const paths = {
+            name: file.originalname,
+            reference: file.path,
+            doctype
+        }  
+        const user = await usersDao.getById(uid)
+        let documents
+        if(user.documents){
+            documents = [
+                ...user.documents,
+                paths
+            ]
+        }else{
+            documents = [
+                paths
+            ]
+        }
+        const search = ['id', 'address', 'account_status'];
+        const allDocuments = search.every(type => {
+          return documents.some(document => document.doctype === type);
+        });
+        if(allDocuments){
+            //Actualizar el status del usuario
+        };
+        const updatedUser = await usersDao.updateUser(uid, { documents })
+        return updatedUser
+    }
+
     async updateUser(uid, payload){
         if(!uid || !Object.keys(payload).length){
             throw new HttpError('Missing data for user', HTTP_STATUS.BAD_REQUEST)
