@@ -47,7 +47,7 @@ const initializePassport = () =>{
                     cart: cart._id,
                     lastConnection: new Date(),
                     documents: [],
-                    status: []
+                    status: false
                 }
                 if(req.file){
                     const paths = {

@@ -48,6 +48,10 @@ const userSchema = new mongoose.Schema({
             }
         ]
     },
+    status: {
+        type: Boolean,
+        default: false
+    },
     last_connection: {
         type: Date
     }

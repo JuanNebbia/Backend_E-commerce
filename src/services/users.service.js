@@ -51,7 +51,7 @@ class UsersService {
     }
 
     async addDocuments(uid, file, doctype){
-        if(!file){
+        if(!file || !doctype){
             throw new HttpError('Missing document', HTTP_STATUS.BAD_REQUEST)
         }
         const paths = {
@@ -60,25 +60,20 @@ class UsersService {
             doctype
         }  
         const user = await usersDao.getById(uid)
-        let documents
-        if(user.documents){
-            documents = [
+        const userPayload = {
+            documents: [
                 ...user.documents,
                 paths
             ]
-        }else{
-            documents = [
-                paths
-            ]
         }
-        const search = ['id', 'address', 'account_status'];
-        const allDocuments = search.every(type => {
-          return documents.some(document => document.doctype === type);
+        const allDocTypes = ['id', 'address', 'account_status'];
+        const allDocuments = allDocTypes.every(type => {
+          return userPayload.documents.some(document => document.doctype === type);
         });
         if(allDocuments){
-            //Actualizar el status del usuario
+            userPayload.status = true
         };
-        const updatedUser = await usersDao.updateUser(uid, { documents })
+        const updatedUser = await usersDao.updateUser(uid, userPayload)
         return updatedUser
     }
 
@@ -121,6 +116,9 @@ class UsersService {
         const user = await usersDao.getById(uid)
         if(!user){
             throw new HttpError('User not found', HTTP_STATUS.NOT_FOUND)
+        }
+        if(user.role === 'user' && !user.status){
+            throw new HttpError('Incomplete documents', HTTP_STATUS.FORBIDDEN)
         }
         let newRole = {}
         if(user.role === 'user'){

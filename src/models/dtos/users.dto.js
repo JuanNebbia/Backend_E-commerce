@@ -11,6 +11,7 @@ class GetUserDTO{
         this.profilePic = payload.profile_pic
         this.lastConnection = payload.last_connection
         this.documents = payload.documents
+        this.status = payload.status
     }
 }
 
@@ -26,6 +27,8 @@ class AddUserDTO {
         this.cart = payload.cart
         this.profile_pic = payload.profilePic
         this.last_connection = payload.lastConnection
+        this.documents = payload.documents
+        this.status = payload.status
     }
 }
 
@@ -52,7 +55,8 @@ class UpdateUserDTO{
             password: payload.password,
             role: payload.role,
             cart: payload.cart,
-            documents: payload.documents
+            documents: payload.documents,
+            status: payload.status
         }
         Object.assign(this, filteredPayload)
     }
