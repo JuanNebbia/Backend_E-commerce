@@ -132,6 +132,20 @@ class UsersService {
 
     }
 
+    async deleteInactive(){
+        const users = await usersDao.getAll()
+        const date = new Date()
+        const twoDaysMs = 2 * 24 * 60 * 60 * 1000;
+        const inactiveUsers = users.filter(user => {
+            if(user.last_connection){
+                return (date.getTime() - user.last_connection.getTime()) > twoDaysMs
+            }else{
+                return user
+            }
+        })
+        inactiveUsers.forEach(iUser => usersDao.deleteUser(iUser._id))
+    }
+
     async deleteUser(uid){
         if(!uid){
             throw new HttpError('Must provide an id', HTTP_STATUS.BAD_REQUEST)

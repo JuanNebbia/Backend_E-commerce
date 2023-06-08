@@ -1,7 +1,5 @@
-const { SECRET_KEY } = require('../config/enviroment.config.js')
 const { gmailTransport } = require('../config/tranports.config.js')
-const { generateRecoveringToken, cookieExtractor } = require('../utils/session.utils.js')
-const jwt = require("jsonwebtoken")
+const { generateRecoveringToken } = require('../utils/session.utils.js')
 
 class MailController {
 

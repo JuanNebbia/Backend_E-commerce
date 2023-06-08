@@ -1,1 +1,7 @@
 
+{"level":"error"}
+{"level":"error","message":{"description":"Missing data for user","status":400}}
+{"level":"error","message":{"description":"Missing data for user","status":400}}
+{"level":"error"}
+{"level":"error","message":{"description":"Incomplete documents","status":403}}
+{"level":"error"}

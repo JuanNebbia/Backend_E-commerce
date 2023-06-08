@@ -125,6 +125,17 @@ class UsersController{
         }
     }
 
+    static async deleteInactiveUsers(req, res, next){
+        try {
+            const deletedUsers = await usersService.deleteInactive()
+            req.logger.info('Inactive users deleted')
+            const response = apiSuccessResponse(deletedUsers)
+            return res.status(HTTP_STATUS.OK).json(response)
+        } catch (error) {
+            next(error)
+        }
+    }
+
     static async deleteUser(req, res, next){
         const { uid } = req.params
         try {
