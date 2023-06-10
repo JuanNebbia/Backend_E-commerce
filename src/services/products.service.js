@@ -2,8 +2,11 @@ const HTTP_STATUS = require("../constants/api.constants.js");
 const getDaos = require("../models/daos/factory.js");
 const { GetProductDTO, UpdateProductDTO, AddProductDTO } = require("../models/dtos/products.dto.js");
 const HttpError = require("../utils/error.utils.js");
+const MailService = require("./mail.service.js");
 
 const { productsDao } = getDaos()
+
+const mailService = new MailService()
 
 class ProductsService {
     async getProducts(filter = {}) {
@@ -32,7 +35,7 @@ class ProductsService {
         if(!title || !description || !code || !stock || !price || !category){
             throw new HttpError('Please include all the required fields', HTTP_STATUS.BAD_REQUEST)
         }
-
+        console.log(owner);
         const productPayloadDTO = new AddProductDTO(productPayload, files, owner)
         const newProduct = productsDao.add(productPayloadDTO)
         return newProduct
@@ -61,6 +64,9 @@ class ProductsService {
         }
         if(user.role === 'premium' && user.email !== product.owner){
             throw new HttpError("Only product's owner can delete this resource", HTTP_STATUS.FORBIDDEN)
+        }
+        if(product.owner !== 'adminCoder@coder.com'){
+            await mailService.productDeletion(product.owner, product.title)
         }
         const deletedProduct = await productsDao.delete(pid)
         return deletedProduct

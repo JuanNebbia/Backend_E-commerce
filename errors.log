@@ -5,3 +5,6 @@
 {"level":"error"}
 {"level":"error","message":{"description":"Incomplete documents","status":403}}
 {"level":"error"}
+{"level":"error"}
+{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
+{"code":11000,"index":0,"keyPattern":{"code":1},"keyValue":{"code":"1drg416ersss"},"level":"error"}
