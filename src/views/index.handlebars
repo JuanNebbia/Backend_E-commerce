@@ -21,7 +21,7 @@
     <h1 class="main-title">Our products</h1>
     <button class="see-cart-button waves-effect waves-light btn-large indigo" onclick="seeCart(event)" id={{user.cart}}>See Cart</button>
     <div id="product-list-container">
-        {{#each products}}
+        {{#each products.docs}}
             <div class="product-item" id={{id}} >
                 <p id="item-title">{{title}}</p>
                 <p>{{description}}</p>

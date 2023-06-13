@@ -56,6 +56,17 @@ class CartsService {
         return addedProduct
     }
 
+    async updateCart(cid, payload){
+        if(!cid){
+            throw new HttpError('Missing param', HTTP_STATUS.BAD_REQUEST)
+        }
+        if(!payload.length){
+            throw new HttpError('Provide a cart payload', HTTP_STATUS.BAD_REQUEST)
+        }
+        const cart = await cartsDao.updateCart(cid, payload)
+        return cart
+    }
+
     async deleteProduct(cid, pid) {
         if(!cid || !pid){
             throw new HttpError('Missing params', HTTP_STATUS.BAD_REQUEST)

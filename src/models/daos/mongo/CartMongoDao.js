@@ -30,7 +30,7 @@ class CartMongoDao {
     }
 
     async updateCart(cid, payload){
-        const updatedCart = await cartModel.findByIdAndUpdate(cid, payload)
+        const updatedCart = await cartModel.findByIdAndUpdate(cid, {products: payload})
         return updatedCart
     }
 

@@ -8,3 +8,42 @@
 {"level":"error"}
 {"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
 {"code":11000,"index":0,"keyPattern":{"code":1},"keyValue":{"code":"1drg416ersss"},"level":"error"}
+{"level":"error","message":{"description":"Product not found","status":404}}
+{"level":"error","message":{"description":"Please provide an id and a payload for the product","status":400}}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"jeje\" (type string) at path \"_id\" because of \"BSONTypeError\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"jeje\"","value":"jeje","valueType":"string"}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","response":"535-5.7.8 Username and Password not accepted. Learn more at\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials q35-20020a056871082300b001a6ce511fa2sm130837oap.2 - gsmtp","responseCode":535}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","response":"535-5.7.8 Username and Password not accepted. Learn more at\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials mp24-20020a0568700e1800b001a2e4d78cd7sm7314022oab.48 - gsmtp","responseCode":535}
+{"code":"EAUTH","command":"AUTH PLAIN","level":"error","response":"535-5.7.8 Username and Password not accepted. Learn more at\n535 5.7.8  https://support.google.com/mail/?p=BadCredentials y19-20020a0568301d9300b006af8399084bsm4870112oti.72 - gsmtp","responseCode":535}
+{"level":"error","message":{"description":"Product not found","status":404}}
+{"level":"error","message":{"description":"Product not found","status":404}}
+{"level":"error","message":{"description":"Only product's owner can delete this resource","status":403}}
+{"level":"error","message":{"description":"Only product's owner can delete this resource","status":403}}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"642cfcb606ab4b28adac73d6xxxxx\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"642cfcb606ab4b28adac73d6xxxxx\"","value":"642cfcb606ab4b28adac73d6xxxxx","valueType":"string"}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"642cfcb606ab4b28acfbf\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"642cfcb606ab4b28acfbf\"","value":"642cfcb606ab4b28acfbf","valueType":"string"}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"642cfcb606ab4b28acfbf\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"642cfcb606ab4b28acfbf\"","value":"642cfcb606ab4b28acfbf","valueType":"string"}
+{"level":"error","message":{"description":"Product not found","status":404}}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"642cfcb606ab4b28acfbf\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"642cfcb606ab4b28acfbf\"","value":"642cfcb606ab4b28acfbf","valueType":"string"}
+{"level":"error","message":{"description":"Cart not found","status":404}}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"642cfcb606ab4b28adac73dkgb\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"642cfcb606ab4b28adac73dkgb\"","value":"642cfcb606ab4b28adac73dkgb","valueType":"string"}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"642cfcb606ab4b28adac5\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"642cfcb606ab4b28adac5\"","value":"642cfcb606ab4b28adac5","valueType":"string"}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"642cfcb606ab4b28adac6\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"642cfcb606ab4b28adac6\"","value":"642cfcb606ab4b28adac6","valueType":"string"}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"642cfcb606ab4b28adac76\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"642cfcb606ab4b28adac76\"","value":"642cfcb606ab4b28adac76","valueType":"string"}
+{"level":"error","message":{"description":"Cart not found","status":404}}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"645712c1fb7541hhh52e7163579\" (type string) at path \"_id\" for model \"products\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"645712c1fb7541hhh52e7163579\"","value":"645712c1fb7541hhh52e7163579","valueType":"string"}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"642cfcb606ab4bg28adac73d6\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"642cfcb606ab4bg28adac73d6\"","value":"642cfcb606ab4bg28adac73d6","valueType":"string"}
+{"kind":"ObjectId","message":"Cast to ObjectId failed for value \"642cfcb606ab4bg28adac73d7\" (type string) at path \"_id\" for model \"carts\"","name":"CastError","path":"_id","reason":{},"stringValue":"\"642cfcb606ab4bg28adac73d7\"","value":"642cfcb606ab4bg28adac73d7","valueType":"string"}
+{"level":"error","message":{"description":"Cart not found","status":404}}
+{"level":"error","message":{"description":"Product not found","status":404}}
+{"level":"error","message":{"description":"Insufficient stock for selected product","status":400}}
+{"level":"error","message":{"description":"Insufficient stock for selected product","status":400}}
+{"level":"error","message":{"description":"Can not add own products","status":403}}
+{"level":"error","message":"Unable to create user, email already registered"}
+{"code":"ENOENT","errno":-4058,"level":"error","path":"D:\\Programación\\Coderhouse\\Backend\\Entregables\\00-Proyecto-Final\\public\\others\\_DSC6431.jpg","storageErrors":[],"syscall":"open"}
+{"level":"error","message":{"description":"Product not found","status":404}}
+{"level":"error"}
+{"level":"error","message":{"description":"Product not found","status":404}}
+{"level":"error","message":{"description":"Missing products","status":400}}
+{"level":"error","message":{"description":"Missing products","status":400}}
+{"level":"error","message":{"description":"Missing products","status":400}}
+{"level":"error","message":{"description":"Missing products","status":400}}
+{"level":"error"}

@@ -54,9 +54,22 @@ class CartsController{
             next(error)
         }
     }
+
+    static async updateCart(req, res, next){
+        const { cid } = req.params
+        const payload = req.body
+        try {
+            const updatedCart = await cartsService.updateCart(cid, payload)
+            const response = apiSuccessResponse(updatedCart)
+            req.logger.info(`cart ${cid} updated`)
+            res.status(HTTP_STATUS.OK).json(response)
+        } catch (error) {
+            next(error)
+        }
+    }
     
     static async removeProduct(req, res, next){
-        const {cid, pid} = req.params
+        const { cid, pid } = req.params
         try {
             const deletedProduct = await cartsService.deleteProduct(cid, pid)
             req.logger.info(`product ${pid} removed from cart ${cid}`)

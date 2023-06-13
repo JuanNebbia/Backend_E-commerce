@@ -5,7 +5,6 @@ const handlebars = require('express-handlebars')
 const helpers = require('handlebars-helpers')
 const viewsRoutes = require('./routers/views/views.routes')
 const mockRoutes = require('./routers/mock/mock.routes')
-const loggerTestRoutes = require('./routers/loggerTest/loggerTest.routes.js')
 const { Server } = require('socket.io')
 const passport = require('passport')
 const initializePassport = require('./config/passport.config')
@@ -47,7 +46,6 @@ app.use(addLogger)
 app.use('/api', apiRouter)
 app.use('/', viewsRoutes)
 app.use('/mockingproducts', mockRoutes)
-app.use('/loggerTest', loggerTestRoutes)
 
 //Templates
 const math = helpers.math();
