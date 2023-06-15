@@ -40,7 +40,7 @@ class ProductsService {
             const actualLimit = limit ? `&limit=${limit}` : ''
             const actualQuery = query ? `&query=${query}` : ''
             const actualSort = sort ? `&sort=${sort}` : ''
-            products.prevLink = `${protocol}://${host}/api/products?page=${page - 1}` + actualLimit + actualQuery + actualSort
+            products.prevLink = `${protocol}://${host}/products?page=${page - 1}` + actualLimit + actualQuery + actualSort
         }
         if(!products.hasNextPage){
             products.nextLink = null
@@ -48,7 +48,7 @@ class ProductsService {
             const actualLimit = limit ? `&limit=${limit}` : ''
             const actualQuery = query ? `&query=${query}` : ''
             const actualSort = sort ? `&sort=${sort}` : ''
-            products.nextLink = `${protocol}://${host}/api/products?page=${(page ?? 1) + 1}` + actualLimit + actualQuery + actualSort
+            products.nextLink = `${protocol}://${host}/products?page=${(+page ?? 1) + 1}` + actualLimit + actualQuery + actualSort
         }
         return products
     }

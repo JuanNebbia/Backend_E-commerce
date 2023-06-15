@@ -51,6 +51,12 @@
             </div>
         {{/each}}
     </div>
+    {{#if products.hasPrevPage}}
+        <a href={{products.prevLink}}>Anterior</a>
+    {{/if}}
+    {{#if products.hasNextPage}}
+        <a href={{products.nextLink}}>Siguiente</a>
+    {{/if}}
 </div>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
