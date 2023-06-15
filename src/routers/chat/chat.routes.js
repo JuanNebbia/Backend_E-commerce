@@ -6,7 +6,7 @@ const passportCall = require('../../middlewares/passport.middleware.js')
 const router = Router()
 
 router.get('/', ChatController.getAll)
-router.post('/', passportCall('jwt'), roleMiddleware(['user']), ChatController.addMessage)
+router.post('/', passportCall('jwt'), roleMiddleware(['user', 'premium']), ChatController.addMessage)
 router.delete('/:mid', ChatController.deleteMessage)
 router.delete('/', ChatController.deleteAllMessages)
 

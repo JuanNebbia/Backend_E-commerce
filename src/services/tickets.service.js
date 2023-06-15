@@ -29,19 +29,28 @@ class TicketsService {
         return ticketPayloadDTO
     }
 
-    async createTicket(cid, payload, purchaser){
+    async createTicket(cid, purchaser){
         if(!cid){
             throw new HttpError('Missing param', HTTP_STATUS.BAD_REQUEST)
         }
-        if(!Object.keys(payload).length){
-            throw new HttpError('Missing products', HTTP_STATUS.BAD_REQUEST)
+        const cart = await cartsDao.getById(cid)
+        if(!cart){
+            throw new HttpError('Cart not found', HTTP_STATUS.NOT_FOUND)
         }
-        payload.totalPrice = 0
-        await payload.forEach( async item => {
+        const { products } = cart
+        if(!Object.keys(products).length){
+            throw new HttpError('The current cart is empty', HTTP_STATUS.BAD_REQUEST)
+        }
+        let totalPrice = 0
+        const ticketProducts = []
+        const abortedProducts = []
+        await products.forEach( async item => {
             if(item.quantity > item.product.stock){
+                abortedProducts.push(item)
                 logYellow(`Not enough stock for this item ${item.product.title} with id: ${item.product._id}`);
             }else{
-                payload.totalPrice += item.quantity * item.product.price
+                ticketProducts.push(item)
+                totalPrice += item.quantity * item.product.price
                 await cartsDao.deleteProductFromCart(cid, item.product._id)
                 const updateProductPayload = {}
                 updateProductPayload.stock = item.product.stock - item.quantity
@@ -53,13 +62,12 @@ class TicketsService {
                 logYellow(`Item ${item.product.title} deleted from cart: ${cid}`);
             }
         })
-        const amount = payload.totalPrice
-        if(!amount){
+        if(!totalPrice){
             throw new HttpError('Not enough stock for purchase any product', HTTP_STATUS.BAD_REQUEST)
         }
-        const ticketPayloadDTO = new AddTicketDTO(purchaser, amount, payload)
+        const ticketPayloadDTO = new AddTicketDTO(purchaser, totalPrice, ticketProducts)
         const newTicket = await ticketsDao.create(ticketPayloadDTO)
-        return newTicket
+        return { newTicket, abortedProducts }
     }
 
     async updateTicket(tid, payload){

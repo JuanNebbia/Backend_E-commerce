@@ -29,18 +29,18 @@ class CartMongoDao {
         return updatedCart
     }
 
-    async updateCart(cid, payload){
-        const updatedCart = await cartModel.findByIdAndUpdate(cid, {products: payload})
+    async updateCart(cid, products){
+        const updatedCart = await cartModel.findByIdAndUpdate(cid, { products })
         return updatedCart
     }
 
     async deleteProductFromCart(cid, pid){
-        const cart = cartModel.updateOne({ _id: cid}, {$pull: {products: {product: {_id: pid}}}})
+        const cart = cartModel.updateOne({ _id: cid }, { $pull: { products: { product: { _id: pid } } } })
         return cart
     }
 
     async deleteAllProducts(cid){
-        const emptyCart = cartModel.updateOne({ _id: cid}, {$pull: {products: {}}})
+        const emptyCart = cartModel.updateOne({ _id: cid }, { $pull: { products: {} } })
         return emptyCart
     }
 }

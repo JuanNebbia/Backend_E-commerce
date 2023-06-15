@@ -47,3 +47,13 @@
 {"level":"error","message":{"description":"Missing products","status":400}}
 {"level":"error","message":{"description":"Missing products","status":400}}
 {"level":"error"}
+{"level":"error","message":{"description":"Insufficient stock for selected product","status":400}}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error","message":{"description":"Provide a cart payload, must be an array","status":400}}
+{"level":"error","message":{"description":"Specify a new amount number for the product","status":400}}
+{"level":"error","message":{"description":"Insufficient stock for selected product","status":400}}
+{"level":"error","message":{"description":"Specify a new amount number for the product","status":400}}
+{"level":"error","message":{"description":"Not enough stock for purchase any product","status":400}}
+{"level":"error","message":{"description":"Not enough stock for purchase any product","status":400}}
