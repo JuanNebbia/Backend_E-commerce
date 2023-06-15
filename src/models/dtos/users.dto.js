@@ -15,6 +15,16 @@ class GetUserDTO{
     }
 }
 
+class GetSimpleUserDTO{
+    constructor(payload){
+        this.firstName = payload.first_name;
+        this.lastName = payload.last_name;
+        this.email = payload.email;
+        this.age = payload.age
+        this.role = payload.role
+    }
+}
+
 class AddUserDTO {
     constructor(payload) {
         this.first_name = payload.firstName;
@@ -64,6 +74,7 @@ class UpdateUserDTO{
 
 module.exports = {
     GetUserDTO,
+    GetSimpleUserDTO,
     AddUserDTO,
     UpdateUserDTO
 }

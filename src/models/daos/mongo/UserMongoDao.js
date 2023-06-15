@@ -1,4 +1,3 @@
-const { logCyan } = require('../../../utils/console.utils')
 const userModel = require('../../schemas/user.model')
 
 class UserMongoDao {
