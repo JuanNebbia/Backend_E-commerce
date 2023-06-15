@@ -24,8 +24,6 @@
         {{#each products.docs}}
             <div class="product-item" id={{id}} >
                 <p id="item-title">{{title}}</p>
-                <p>{{description}}</p>
-                <p class="price-tag">${{price}}</p>
                 {{#if thumbnails}}
                     <div class="thumbnail-container">
                         <img src="../../statics/products/{{thumbnails.[0].originalName}}" alt="">
@@ -33,7 +31,7 @@
                 {{else}}
                     <p id="no-image">no image</p>
                 {{/if}}
-                {{#if stock}}
+                {{!-- {{#if stock}}
                     <p class="stock-tag">{{stock}} in stock</p>
                 {{/if}}
                 <div class="button-section-container">
@@ -47,7 +45,9 @@
                     {{else}}
                         <button id="add-to-cart-button" class="waves-effect waves-light btn-small" onclick="addToCart(event)" disabled>Sold out</button>
                     {{/if}}
-                </div>
+                </div> --}}
+                <p class="price-tag">${{price}}</p>
+                <p class="item-description">{{description}}</p>
             </div>
         {{/each}}
     </div>

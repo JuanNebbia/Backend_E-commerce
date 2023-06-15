@@ -48,7 +48,7 @@ class ProductsService {
             const actualLimit = limit ? `&limit=${limit}` : ''
             const actualQuery = query ? `&query=${query}` : ''
             const actualSort = sort ? `&sort=${sort}` : ''
-            products.nextLink = `${protocol}://${host}/products?page=${(+page ?? 1) + 1}` + actualLimit + actualQuery + actualSort
+            products.nextLink = `${protocol}://${host}/products?page=${+(page ?? 1) + 1}` + actualLimit + actualQuery + actualSort
         }
         return products
     }

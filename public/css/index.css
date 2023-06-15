@@ -65,11 +65,12 @@ body{
     gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 3rem;
 }
 
 .product-item{
     background-color: #ffffff;
-    padding: 0.5rem;
+    padding: 0;
     min-width: 10rem;
     max-width: 15rem;
     text-align: center;
@@ -77,10 +78,33 @@ body{
     flex-direction: column;
     align-items: center;
     border-radius: 0.5rem;
+    cursor: pointer;
+    width: 12rem;
+    transition: all 300ms;
+    height: 20rem;
+}
+
+.product-item:hover{
+    height: 23rem;
+}
+
+.product-item:hover .item-description{
+    opacity: 1;
 }
 
 #item-title{
-    font-size: 2rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 1rem;
+}
+
+.item-description{
+    opacity: 0;
+    max-height: 3rem;
+    overflow: hidden;
+    font-size: 0.9rem;
+    transition: opacity 500ms;
+    margin: 1rem;
 }
 
 .price-tag{
@@ -93,7 +117,7 @@ body{
 }
 
 .thumbnail-container{
-    width: 12rem;
+    width: 100%;
     height: 10rem;
     display: flex;
     justify-content: center;
