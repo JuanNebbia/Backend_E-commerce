@@ -50,6 +50,22 @@ class ViewsController{
         }
     }
 
+    static async productDetail(req, res, next) {
+        const { user } = req
+        const { pid } = req.params
+        try {
+            const product = await productsService.getProductById(pid)
+            res.render('productDetail', {
+                title: product.title,
+                styles: 'detail.css',
+                product,
+                user
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
+
     static async cart(req, res, next) {
         const { cid } = req.params 
         const { user } = req

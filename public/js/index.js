@@ -4,29 +4,19 @@ const seeCartButton = document.querySelector('.see-cart-button')
 
 const cartId = seeCartButton.id
 
-const addToCart = async (event) =>{
-    try {
-        const productId = event.target.parentNode.parentNode.getAttribute('id')
-        const amount = event.target.previousElementSibling.children[1].textContent
-        const addedProduct = await fetch(`/api/carts/${cartId}/product/${productId}`, {
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            method: 'PUT',
-            body: JSON.stringify({amount}),
-        })
-        if (addedProduct.status !== 403){
-            alert('item added to cart')
+const seeProduct = async (event) => {
+    let id
+    let currentNode = event.target
+    while (!id) {
+        if(currentNode.tagName !== 'A'){
+            currentNode = currentNode.parentNode
         }else{
-            alert("Can't add product to cart")
+            id = currentNode.id
+            break
         }
-        event.target.previousElementSibling.children[1].textContent = 1
-        
-    } catch (error) {
-        console.log(error);
     }
+    window.location.href = '/product/' + id
 }
-
 
 const seeCart = async (event) =>{
     window.location.href = `/cart/${cartId}`

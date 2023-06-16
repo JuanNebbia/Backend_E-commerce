@@ -57,3 +57,9 @@
 {"level":"error","message":{"description":"Specify a new amount number for the product","status":400}}
 {"level":"error","message":{"description":"Not enough stock for purchase any product","status":400}}
 {"level":"error","message":{"description":"Not enough stock for purchase any product","status":400}}
+{"level":"error","message":{"description":"This product was not found in current cart","status":404}}
+{"level":"error","message":{"description":"This product was not found in current cart","status":404}}
+{"level":"error","message":{"description":"This product was not found in current cart","status":404}}
+{"level":"error","message":{"description":"This product was not found in current cart","status":404}}
+{"level":"error","message":{"description":"This product was not found in current cart","status":404}}
+{"level":"error","message":{"description":"This product was not found in current cart","status":404}}

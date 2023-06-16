@@ -1,4 +1,4 @@
-<div>
+<div class="index-container">
     <div class="welcome-box z-depth-2">
         <div class="info-section">
             <h3 class="welcome-title">Welcome {{user.firstName}} {{user.lastName}} <span class="user-role">({{user.role}})</span></h3>
@@ -22,41 +22,32 @@
     <button class="see-cart-button waves-effect waves-light btn-large indigo" onclick="seeCart(event)" id={{user.cart}}>See Cart</button>
     <div id="product-list-container">
         {{#each products.docs}}
-            <div class="product-item" id={{id}} >
+            <a class="product-item" id={{id}} onclick="seeProduct(event)">
                 <p id="item-title">{{title}}</p>
                 {{#if thumbnails}}
                     <div class="thumbnail-container">
                         <img src="../../statics/products/{{thumbnails.[0].originalName}}" alt="">
                     </div>
-                {{else}}
-                    <p id="no-image">no image</p>
-                {{/if}}
-                {{!-- {{#if stock}}
-                    <p class="stock-tag">{{stock}} in stock</p>
-                {{/if}}
-                <div class="button-section-container">
-                    <div class="item-counter-container">
-                        <button class="less-button-counter" onclick="decreaseAmount(event)">-</button>
-                        <p class="counter">1</p>
-                        <button class="more-button-counter" onclick="increaseAmount(event)">+</button>
-                    </div>
-                    {{#if status}}
-                        <button id="add-to-cart-button" class="waves-effect waves-light btn-small" onclick="addToCart(event)">Add to cart</button>
                     {{else}}
-                        <button id="add-to-cart-button" class="waves-effect waves-light btn-small" onclick="addToCart(event)" disabled>Sold out</button>
-                    {{/if}}
-                </div> --}}
-                <p class="price-tag">${{price}}</p>
+                        <p id="no-image">no image</p>
+                {{/if}}
+                {{#if stock}}
+                    <p class="stock-tag">{{stock}} in stock</p>
+                    {{else}}
+                        <p class="stock-tag">sold out</p>
+                {{/if}}
                 <p class="item-description">{{description}}</p>
-            </div>
+            </a>
         {{/each}}
     </div>
-    {{#if products.hasPrevPage}}
-        <a href={{products.prevLink}}>Anterior</a>
-    {{/if}}
-    {{#if products.hasNextPage}}
-        <a href={{products.nextLink}}>Siguiente</a>
-    {{/if}}
+    <div class="pag-btn-container">
+        {{#if products.hasPrevPage}}
+            <a href={{products.prevLink}}>Anterior</a>
+        {{/if}}
+        {{#if products.hasNextPage}}
+            <a href={{products.nextLink}}>Siguiente</a>
+        {{/if}}
+    </div>
 </div>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

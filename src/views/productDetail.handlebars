@@ -1,0 +1,39 @@
+<div class="detail-container">
+    <div class="detail-box">
+        <div class="img-section">
+            <div class="img-container">
+                <img src="../../statics/products/{{product.thumbnails.[0].originalName}}" alt={{product.title}} class="product-img">
+            </div>
+            {{#if product.thumbnails.[1]}}
+                {{#each product.thumbnails}}
+                    <div >
+                        <img src="../../statics/products/{{originalName}}" alt={{originalName}}>
+                    </div>
+                {{/each}}
+            {{/if}}
+        </div>
+        <div class="info-section">
+            <h3>{{product.title}}</h3>
+            <p>{{product.description}}</p>
+            <p class="price-tag">${{product.price}}</p>
+            {{#if product.stock}}
+                <p class="stock-tag">{{product.stock}} in stock</p>
+                <div class="button-section-container">
+                    <div class="item-counter-container">
+                        <button class="less-button-counter" onclick="decreaseAmount(event, {{product.stock}})">-</button>
+                        <p class="counter">1</p>
+                        <button class="more-button-counter" onclick="increaseAmount(event, {{product.stock}})">+</button>
+                    </div>
+                    {{#if product.status}}
+                        <button id="add-to-cart-button" class="waves-effect waves-light btn-small" onclick="addToCart(event, `{{product.id}}`, `{{user.cart}}`)">Add to cart</button>
+                    {{/if}}
+                </div>
+            {{else}}
+                <p>Sold out</p>
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+
+<script src="/statics/js/detail.js"></script>
