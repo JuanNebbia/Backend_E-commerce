@@ -1,8 +1,8 @@
 .detail-container{
-    min-height: 100vh;
-    background-color: #dfdfdf;
+    min-height: calc(100vh - 3rem);
+    background-color: #b4c7ac;
     display: flex;
-    padding: 10%;
+    padding: 5% 10%;
 }
 
 .detail-box{

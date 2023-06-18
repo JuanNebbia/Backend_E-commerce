@@ -63,3 +63,5 @@
 {"level":"error","message":{"description":"This product was not found in current cart","status":404}}
 {"level":"error","message":{"description":"This product was not found in current cart","status":404}}
 {"level":"error","message":{"description":"This product was not found in current cart","status":404}}
+{"code":"EENVELOPE","command":"API","level":"error"}
+{"code":"EENVELOPE","command":"API","level":"error"}

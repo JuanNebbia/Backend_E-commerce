@@ -1,0 +1,66 @@
+html, body{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: #b4c7ac;
+}
+
+.navbar{ 
+    display: flex; 
+    background-color: #105c20;  
+    margin: 0;
+}
+
+.navbar-container{
+    display: flex;
+    width: 100%; 
+    padding: 0.5rem 10%;
+    align-items: center;
+}
+
+.home-link{
+    text-decoration: none;
+    width: fit-content;
+    display: flex;
+    align-items: baseline;
+}
+
+.icon{
+    height: 2rem;
+    margin-right: 0.5rem;
+}
+
+.brand-logo{
+    color: #eec;
+    text-decoration: none;
+    font-size: 2rem;
+    text-shadow: -1px 0 5px #041f01;
+}
+
+.btn-list{
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+    align-items: center;
+}
+
+.user-btn{
+    color: #fff;
+    font-weight: 600;
+    margin: 0 1rem;
+    border: none ;
+    height: fit-content;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.logout-btn{
+    color: #fff;
+    font-weight: 100;
+    border: none ;
+    height: fit-content;
+    background-color: transparent;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}

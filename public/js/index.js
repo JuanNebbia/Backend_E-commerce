@@ -1,25 +1,17 @@
-const productItem = document.querySelector('.product-item')
-const addToCartButton = document.getElementById('add-to-cart-button')
-const seeCartButton = document.querySelector('.see-cart-button')
-
-const cartId = seeCartButton.id
-
-const seeProduct = async (event) => {
-    let id
-    let currentNode = event.target
-    while (!id) {
-        if(currentNode.tagName !== 'A'){
-            currentNode = currentNode.parentNode
-        }else{
-            id = currentNode.id
-            break
-        }
+const filterResults = async(event, filter) => {
+    if(filter){
+        window.location.href = '/products?query=' + filter
+    }else{
+        window.location.href = '/products'
     }
-    window.location.href = '/product/' + id
 }
 
-const seeCart = async (event) =>{
-    window.location.href = `/cart/${cartId}`
+const seeProduct = async (event, pid) => {
+    window.location.href = '/product/' + pid
+}
+
+const seeCart = async (event, cid) =>{
+    window.location.href = `/cart/${cid}`
 }
 
 const decreaseAmount = (event) =>{

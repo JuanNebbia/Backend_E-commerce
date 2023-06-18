@@ -1,5 +1,8 @@
+<div class="banner-container">
+    <img class="banner-img" src="/statics/assets/banner.jpg" alt="yerba mate">
+</div>
 <div class="index-container">
-    <div class="welcome-box z-depth-2">
+    {{!-- <div class="welcome-box z-depth-2">
         <div class="info-section">
             <h3 class="welcome-title">Welcome {{user.firstName}} {{user.lastName}} <span class="user-role">({{user.role}})</span></h3>
             <p class="user-email">{{user.email}}</p>
@@ -17,12 +20,16 @@
                 </div>
             </div>
         {{/if}}
+    </div> --}}
+    <div class="filter-container">
+        <button class="filter-btn" onclick="filterResults(event, null)">Todo</button>
+        <button class="filter-btn" onclick="filterResults(event, 'mate')">Mates</button>
+        <button class="filter-btn" onclick="filterResults(event, 'termo')">Termos</button>
+        <button class="filter-btn" onclick="filterResults(event, 'bombilla')">Bombillas</button>
     </div>
-    <h1 class="main-title">Our products</h1>
-    <button class="see-cart-button waves-effect waves-light btn-large indigo" onclick="seeCart(event)" id={{user.cart}}>See Cart</button>
     <div id="product-list-container">
         {{#each products.docs}}
-            <a class="product-item" id={{id}} onclick="seeProduct(event)">
+            <a class="product-item" id={{id}} onclick="seeProduct(event, `{{id}}`)">
                 <p id="item-title">{{title}}</p>
                 {{#if thumbnails}}
                     <div class="thumbnail-container">
@@ -31,11 +38,12 @@
                     {{else}}
                         <p id="no-image">no image</p>
                 {{/if}}
-                {{#if stock}}
+                <p class="price-tag">${{price}}</p>
+                {{!-- {{#if stock}}
                     <p class="stock-tag">{{stock}} in stock</p>
                     {{else}}
                         <p class="stock-tag">sold out</p>
-                {{/if}}
+                {{/if}} --}}
                 <p class="item-description">{{description}}</p>
             </a>
         {{/each}}
@@ -43,9 +51,13 @@
     <div class="pag-btn-container">
         {{#if products.hasPrevPage}}
             <a href={{products.prevLink}}>Anterior</a>
+            {{else}}
+            <p class="pagLink disabled" disabled>Anterior</p>
         {{/if}}
         {{#if products.hasNextPage}}
             <a href={{products.nextLink}}>Siguiente</a>
+            {{else}}
+            <p class="pagLink disabled" disabled>Siguiente</p>
         {{/if}}
     </div>
 </div>

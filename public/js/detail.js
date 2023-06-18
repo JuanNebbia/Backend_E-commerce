@@ -13,8 +13,6 @@ const increaseAmount = (event, stock) =>{
 }
 
 const addToCart = async (event, pid, cid) =>{
-    console.log(cid);
-    console.log(pid);
     try {        
         const amount = event.target.previousElementSibling.children[1].textContent
         const addedProduct = await fetch(`/api/carts/${cid}/product/${pid}`, {
@@ -28,7 +26,6 @@ const addToCart = async (event, pid, cid) =>{
             alert('item added to cart')
         }else{
             alert("Can't add product to cart")
-            console.log(addedProduct)
         }
         event.target.previousElementSibling.children[1].textContent = 1
         

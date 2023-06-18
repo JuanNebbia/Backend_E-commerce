@@ -39,11 +39,13 @@ class ViewsController{
         const host = req.get('host')
         try {
             const products = await productsService.getProducts(limit, page, query, sort, protocol, host)
+            const cart = await cartsService.getCartById(user.cart)
             res.render('index', {
                 title: "E-commerce",
                 styles:"index.css",
-                products: products,
-                user: user
+                products,
+                user,
+                cart
             })
         } catch (error) {
             next(error)
