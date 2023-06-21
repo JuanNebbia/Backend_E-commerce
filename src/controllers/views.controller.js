@@ -2,12 +2,14 @@ const getDaos = require('../models/daos/factory')
 const CartsService = require('../services/carts.service.js')
 const ProductsService = require('../services/products.service.js')
 const TicketsService = require('../services/tickets.service.js')
+const UsersService = require('../services/users.service')
 
 const { chatsDao, ticketsDao } = getDaos()
 
 const productsService = new ProductsService()
 const cartsService = new CartsService()
 const ticketsService = new TicketsService()
+const usersService = new UsersService()
 
 class ViewsController{
 
@@ -81,6 +83,21 @@ class ViewsController{
             })
         } catch (error) {
             next(error)
+        }
+    }
+
+    static async users(req, res, next) {
+        try {
+            const users = await usersService.getAll()
+            res.render('users', {
+                title: "Usuarios",
+                styles:"users.css",
+                users,
+            })
+            
+        } catch (error) {
+            next(error)
+            
         }
     }
 

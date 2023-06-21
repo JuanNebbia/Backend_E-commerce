@@ -1,3 +1,10 @@
+.login-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .login-title{
     text-align: center;
     color: #444;
@@ -5,7 +12,29 @@
 }
 
 .login-form-container{
+    width: 70%;
     max-width: 40rem;
+    background-color: #fff;
+    border-radius: 0.2rem;
+    padding: 4rem;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem
+}
+
+.input-field{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-bottom: 1rem;
+}
+
+.password-recovering{
+    margin: 2rem;
 }
 
 .signup-anchor{
@@ -16,15 +45,13 @@
     text-decoration: underline;
 }
 
-.login-submit{
-    color: #fff;
-}
+
 
 .signup-anchor:hover{
     color: #2865e7;
 }
 
 .github-login{
-    margin: auto;
+    margin: 2rem auto;
     display: block;
 }

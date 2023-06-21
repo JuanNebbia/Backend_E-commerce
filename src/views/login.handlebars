@@ -1,25 +1,23 @@
-<h1 class="login-title">Login</h1>
+<div class="login-container">
+    <h1 class="login-title">Inicia Sesión</h1>
 
-<div class="row container login-form-container">
-    <form class="col s12" action="/api/session/login" method="post">
-        <div class="row">
-            <div class="input-field col s12">
-                <input type="email" class="validate" name="email">
+    <div class="row container login-form-container">
+        <form class="login-form" action="/api/session/login" method="post">
+            <div class="input-field">
                 <label for="email">Email</label>
+                <input type="email" class="validate" name="email">
                 <span class="helper-text" data-error="Introduce a valid email" data-success="right"></span>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
+            <div class="input-field">
+                <label for="password">Contraseña</label>
                 <input type="password" class="validate" name="password">
-                <label for="password">Password</label>
             </div>
-            <a href="/login/recover">forgot your password?</a>
-        </div>
-        <input class="waves-effect waves-light btn-small login-submit" type="submit" value="Log in">
-    </form>
+            <a href="/login/recover" class="password-recovering">¿Olvidaste tu contraseña?</a>
+            <input class="login-submit" type="submit" value="Ingresar">
+        </form>
+    </div>
+
+    <button class="github-login"><a href="/api/session/github">Ingresar con Github</a></button>
 </div>
 
-<a href="/api/session/github"><button class="waves-effect waves-light btn-small github-login">Sign in with Github</button></a>
-
-<a href="/register" class="signup-anchor">Are you new? Sign up!</a>
+<a href="/register" class="signup-anchor">¿Eres nuevo por aquí? ¡Regístrate!</a>

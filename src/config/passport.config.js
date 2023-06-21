@@ -75,12 +75,12 @@ const initializePassport = () =>{
             try {
                 if(username === ADMIN_NAME && password === ADMIN_PASSWORD){
                     const user = {
-                        first_name: 'Admin',
-                        last_name: 'Coder',
+                        firstName: 'Admin',
+                        lastName: 'Coder',
                         email: ADMIN_NAME,
                         password: ADMIN_PASSWORD,
                         role: 'admin',
-                        cart: '640e0351f496d9111957b2de'
+                        cart: '646d7b6c397b8a60207b7fd7'
                     }
                     return done(null, user)
                 }
@@ -120,7 +120,7 @@ const initializePassport = () =>{
                         githubLogin: userData.login,
                         cart: cart._id,
                         lastConnection: new Date(),
-                        documents
+                        documents: []
                     }
                     const userPayload = new AddUserDTO(newUser)
                     const response = await usersDao.addUser(userPayload)

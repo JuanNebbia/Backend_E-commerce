@@ -1,0 +1,37 @@
+<div class="users-container">
+    <h2>Lista de usuarios</h2>
+    <table class="users-table">
+        <tr>
+            <th></th>
+            <th class="header">Email</th>
+            <th class="header">Rol</th>
+            <th class="header">Tipo de acceso</th>
+        </tr>
+        {{#each users}}
+        <tr>
+            <td>
+                {{#if profile_pic}}
+                    <div class="profile-container">
+                        <img src="../../statics/profiles/{{profile_pic.originalName}}" alt="profile picture" class="profile-img">
+                    </div>
+                {{/if}}
+            </td>
+            <td>{{email}}</td>
+            <td>{{role}}</td>
+            {{#if github_login}}
+                <td>github</td>
+                {{else}}
+                <td>local</td>
+            {{/if}}
+            <td>
+                <button onclick="deleteUser(`{{_id}}`)">Eliminar</button>
+            </td>
+            <td>
+                <button onclick="changeRole(`{{_id}}`)">Cambiar rol</button>
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+</div>
+
+<script src="/statics/js/users.js"></script>

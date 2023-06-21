@@ -22,6 +22,9 @@ class GetSimpleUserDTO{
         this.email = payload.email;
         this.age = payload.age
         this.role = payload.role
+        if(payload.github_login){
+            this.githubLogin = payload.github_login
+        }
     }
 }
 

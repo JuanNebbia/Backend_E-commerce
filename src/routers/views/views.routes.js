@@ -3,6 +3,7 @@ const ViewsController = require('../../controllers/views.controller')
 const { sessionMiddleware } = require('../../middlewares/session.middleware')
 const { authMiddleware } = require('../../middlewares/auth.middleware')
 const passportCall = require('../../middlewares/passport.middleware')
+const { roleMiddleware } = require('../../middlewares/role.middleware')
 
 const router = Router()
 
@@ -41,6 +42,12 @@ router.get('/cart/:cid',
     authMiddleware,
     passportCall('jwt'),
     ViewsController.cart
+)
+
+router.get('/users',
+    passportCall('jwt'), 
+    roleMiddleware(['admin']),
+    ViewsController.users
 )
 
 router.get('/chat', 
