@@ -11,11 +11,23 @@ const changeRole = async(id) =>{
         method: 'PUT'
     })
     .then((response) => {
-        console.log(response)
-        if(response.code === 200){
+        if(response.status === 200){
             alert('Usuario modificado')
         }else{
             alert('No se puede modificar este usuario')
+        }
+    })
+}
+
+const deleteInactive = async() =>{
+    fetch(`/api/users`,{
+        method: 'DELETE'
+    })
+    .then((response) => {
+        if(response.status === 200){
+            alert('Usuarios eliminados')
+        }else{
+            alert('Ha habido un problema al eliminar usuarios')
         }
     })
 }

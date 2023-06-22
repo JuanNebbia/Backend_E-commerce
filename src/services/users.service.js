@@ -72,7 +72,7 @@ class UsersService {
         }
         const allDocTypes = ['id', 'address', 'account_status'];
         const allDocuments = allDocTypes.every(type => {
-          return userPayload.documents.some(document => document.doctype === type);
+            return userPayload.documents.some(document => document.doctype === type);
         });
         if(allDocuments){
             userPayload.status = true
@@ -131,9 +131,8 @@ class UsersService {
         if(user.role === 'premium'){
             newRole.role = 'user'
         }
-        const updatedUser = await usersDao.updateUser(user._id, newRole)
+        const updatedUser = await usersDao.updateUser(uid, newRole)
         return updatedUser
-
     }
 
     async deleteInactive(){

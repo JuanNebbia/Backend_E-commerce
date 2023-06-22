@@ -42,12 +42,14 @@ class ViewsController{
         try {
             const products = await productsService.getProducts(limit, page, query, sort, protocol, host)
             const cart = await cartsService.getCartById(user.cart)
+            const admin = user.role === 'admin'
             res.render('index', {
                 title: "E-commerce",
                 styles:"index.css",
                 products,
                 user,
-                cart
+                cart,
+                admin
             })
         } catch (error) {
             next(error)
@@ -58,12 +60,14 @@ class ViewsController{
         const { user } = req
         const { pid } = req.params
         try {
+            const admin = user.role === 'admin'
             const product = await productsService.getProductById(pid)
             res.render('productDetail', {
                 title: product.title,
                 styles: 'detail.css',
                 product,
-                user
+                user,
+                admin
             })
         } catch (error) {
             next(error)
@@ -75,11 +79,13 @@ class ViewsController{
         const { user } = req
         try {
             const cart = await cartsService.getCartById(cid)
+            const admin = user.role === 'admin'
             res.render('cart', {
                 title: "Cart",
                 styles:"cart.css",
                 user,
-                cart
+                cart,
+                admin
             })
         } catch (error) {
             next(error)
@@ -87,12 +93,16 @@ class ViewsController{
     }
 
     static async users(req, res, next) {
+        const { user } = req
         try {
-            const users = await usersService.getAll()
+            const admin = user.role === 'admin'
+            const usersList = await usersService.getAll()
             res.render('users', {
                 title: "Usuarios",
                 styles:"users.css",
-                users,
+                usersList,
+                user,
+                admin
             })
             
         } catch (error) {

@@ -28,6 +28,11 @@
                             <button class="see-cart-button waves-effect waves-light btn-large indigo" onclick="seeCart(event, `{{user.cart}}`)">Ver carrito ({{cart.products.length}})</button>
                         </li>
                     {{/if}}
+                    {{#if admin}}
+                        <li>
+                            <a href="/users">Ver usuarios</a>
+                        </li>
+                    {{/if}}
                     <li>
                         <button class="user-btn">{{user.firstName}} {{user.lastName}}</button>
                     </li>

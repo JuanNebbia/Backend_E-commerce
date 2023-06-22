@@ -7,7 +7,7 @@
             <th class="header">Rol</th>
             <th class="header">Tipo de acceso</th>
         </tr>
-        {{#each users}}
+        {{#each usersList}}
         <tr>
             <td>
                 {{#if profile_pic}}
@@ -32,6 +32,7 @@
         </tr>
         {{/each}}
     </table>
+    <button onclick="deleteInactive()">Eliminar usuarios inactivos</button>
 </div>
 
 <script src="/statics/js/users.js"></script>

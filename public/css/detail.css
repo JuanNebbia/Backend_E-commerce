@@ -42,6 +42,24 @@
     object-fit: contain;
 }
 
+.thumbnails-section{
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.thumbnail-btn{
+    height: 4rem;
+    width: 4rem;
+    cursor: pointer;
+}
+
+.thumbnail{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
 .button-section-container{
     margin: auto auto 0;
 }
@@ -56,4 +74,8 @@
 
 .counter{
     margin: 0
+}
+
+.add-to-cart-button{
+    margin: auto;
 }

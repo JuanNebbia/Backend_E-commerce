@@ -5,15 +5,17 @@
                 <img src="../../statics/products/{{product.thumbnails.[0].originalName}}" alt={{product.title}} class="product-img">
             </div>
             {{#if product.thumbnails.[1]}}
+            <div class="thumbnails-section">
                 {{#each product.thumbnails}}
-                    <div >
-                        <img src="../../statics/products/{{originalName}}" alt={{originalName}}>
-                    </div>
+                    <button class="thumbnail-btn" onclick="selectImg(`{{originalName}}`)">
+                        <img src="../../statics/products/{{originalName}}" alt={{originalName}} class="thumbnail">
+                    </button>
                 {{/each}}
+            </div>
             {{/if}}
         </div>
         <div class="info-section">
-            <h3>{{product.title}}</h3>
+            <h3 class="product-title">{{product.title}}</h3>
             <p>{{product.description}}</p>
             <p class="price-tag">${{product.price}}</p>
             {{#if product.stock}}
@@ -25,7 +27,7 @@
                         <button class="more-button-counter" onclick="increaseAmount(event, {{product.stock}})">+</button>
                     </div>
                     {{#if product.status}}
-                        <button id="add-to-cart-button" class="waves-effect waves-light btn-small" onclick="addToCart(event, `{{product.id}}`, `{{user.cart}}`)">Add to cart</button>
+                        <button id="add-to-cart-button" class="add-to-cart-button" onclick="addToCart(event, `{{product.id}}`, `{{user.cart}}`)">Añadir al carrito</button>
                     {{/if}}
                 </div>
             {{else}}

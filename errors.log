@@ -4,3 +4,7 @@
 {"level":"error","message":{"description":"Incomplete documents","status":403}}
 {"level":"error","message":{"description":"Incomplete documents","status":403}}
 {"level":"error","message":{"description":"Incomplete documents","status":403}}
+{"level":"error","message":{"description":"Incomplete documents","status":403}}
+{"code":"ENOENT","errno":-4058,"level":"error","path":"D:\\Programación\\Coderhouse\\Backend\\Trabajo Final\\Backend_E-commerce\\public\\others\\_DSC3466.jpg","storageErrors":[],"syscall":"open"}
+{"level":"error","message":{"description":"Incomplete documents","status":403}}
+{"level":"error","message":{"description":"Incomplete documents","status":403}}

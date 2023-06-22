@@ -33,3 +33,8 @@ const addToCart = async (event, pid, cid) =>{
         console.log(error);
     }
 }
+
+const selectImg = (name) =>{
+    const img = document.querySelector('.product-img')
+    img.src = `../../statics/products/${name}`
+}
