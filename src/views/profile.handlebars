@@ -1,0 +1,31 @@
+<div class="profile-container">
+    <h2>Perfil</h2>
+    <div class="profile-card">
+        <div class="profile-img-container">
+            <img src="../../statics/profiles/{{userData.profile_pic.originalName}}" alt="" class="profile-pic">
+        </div>
+        <h4>{{userData.first_name}} {{userData.last_name}}</h4>
+        <p>{{userData.email}}</p>
+        <p>{{userData.role}}</p>
+        <button onclick="changeRole(`{{userData._id}}`, `{{userData.status}}`)">Cambiar Rol</button>
+        {{#if userData.status}}
+            <small class="premium-tag">Estás listo para acceder a el servicio premium</small>
+            {{else}}
+                <small class="premium-tag">Para acceder a premium debes completar la carga de documentos</small>
+                <form onsubmit="sendDocumentation(event, `{{userData._id}}`)" class="documents-form">
+                    <label for="doc-select">Selecciona el documento a cargar:</label>
+                    <select name="doc" id="doc-selec">
+                        <option value="">--Escoger--</option>
+                        <option value="id">Identificación</option>
+                        <option value="address">Comprobante de domicilio</option>
+                        <option value="account_status">Comprobante de estado de cuenta</option>
+                    </select>
+                    <input type="file" name="file" id="file-input">
+                    <input type="submit">
+                </form>
+        {{/if}}
+    </div>
+</div>
+
+
+<script src="/statics/js/profile.js"></script>

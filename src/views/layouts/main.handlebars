@@ -34,7 +34,7 @@
                         </li>
                     {{/if}}
                     <li>
-                        <button class="user-btn">{{user.firstName}} {{user.lastName}}</button>
+                        <a class="user-btn" onclick="seeProfile(`{{user.id}}`)">{{user.firstName}} {{user.lastName}}</a>
                     </li>
                     <li>
                         <button id="logout-button" class="logout-btn">Salir</button>

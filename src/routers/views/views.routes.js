@@ -50,6 +50,12 @@ router.get('/users',
     ViewsController.users
 )
 
+router.get('/profile/:uid',
+    passportCall('jwt'), 
+    roleMiddleware(['user', 'premium']),
+    ViewsController.profile
+)
+
 router.get('/chat', 
     authMiddleware,
     passportCall('jwt'),

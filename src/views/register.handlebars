@@ -1,6 +1,6 @@
 <h1 class="signup-title">Sign up</h1>
 <div class="row register-form-container container">
-    <form class="col s12 register-form" action="/api/session/register" method="post" enctype="multipart/form-data">
+    <form class="col s12 register-form" id="register-form" enctype="multipart/form-data" onsubmit="registerUser(event)">
         <div class="row">
             <div class="input-field col s6">
                 <input type="text" class="validate" name="firstName">

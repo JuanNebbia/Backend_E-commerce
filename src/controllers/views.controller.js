@@ -111,6 +111,22 @@ class ViewsController{
         }
     }
 
+    static async profile(req, res, next){
+        const { user } = req
+        const { uid } = req.params
+        try {
+            const userData = await usersService.getById(uid)
+            res.render('profile', {
+                title: "Perfil",
+                styles:"profile.css",
+                user,
+                userData
+            })
+        } catch (error) {
+            
+        }
+    }
+
     static async chat(req, res, next) {
         try{
             const messages = await chatsDao.getAll()
