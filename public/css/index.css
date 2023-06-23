@@ -173,10 +173,19 @@ body{
     margin: 1rem auto;
 }
 
+.pagLink{
+    margin: auto 0;
+}
+
+.pagLink.disabled{
+    color: #555;
+    cursor: not-allowed;
+}
+
 .pag-btn-container{
     display: flex;
     justify-content: center;
     margin: 2rem 0;
-    gap: 1rem;
+    gap: 3rem;
     font-size: 1.1rem;
 }

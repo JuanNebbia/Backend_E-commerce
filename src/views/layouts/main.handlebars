@@ -30,12 +30,23 @@
                     {{/if}}
                     {{#if admin}}
                         <li>
-                            <a href="/users">Ver usuarios</a>
+                            <a href="/users" class="nav-btn">Ver usuarios</a>
+                        </li>
+                        {{else}}
+                            <li>
+                                <a class="nav-btn" onclick="seeProfile(`{{user.id}}`)">Ver Perfil</a>
+                            </li>
+                    {{/if}}
+                    {{#if premium}}
+                        <li>
+                            <a href="/newproduct" class="nav-btn">Nuevo producto</a>
                         </li>
                     {{/if}}
-                    <li>
-                        <a class="user-btn" onclick="seeProfile(`{{user.id}}`)">{{user.firstName}} {{user.lastName}}</a>
-                    </li>
+                    {{#if admin}}
+                        <li>
+                            <a href="/newproduct" class="nav-btn">Nuevo producto</a>
+                        </li>
+                    {{/if}}
                     <li>
                         <button id="logout-button" class="logout-btn">Salir</button>
                     </li>

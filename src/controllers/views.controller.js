@@ -43,13 +43,15 @@ class ViewsController{
             const products = await productsService.getProducts(limit, page, query, sort, protocol, host)
             const cart = await cartsService.getCartById(user.cart)
             const admin = user.role === 'admin'
+            const premium = user.role === 'premium'
             res.render('index', {
                 title: "E-commerce",
                 styles:"index.css",
                 products,
                 user,
                 cart,
-                admin
+                admin,
+                premium
             })
         } catch (error) {
             next(error)
@@ -123,8 +125,22 @@ class ViewsController{
                 userData
             })
         } catch (error) {
-            
+            next(error)
         }
+    }
+
+    static async newProduct(req, res, next){
+        const { user } = req
+        try {
+            res.render('newProduct', {
+                title: "Crear Producto",
+                styles:"newproduct.css",
+                user,
+            })
+        } catch (error) {
+            next(error)
+        }
+
     }
 
     static async chat(req, res, next) {

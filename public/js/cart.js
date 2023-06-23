@@ -31,7 +31,7 @@ const seeTicketButton = tid =>{
 
 const showThanks = () =>{
     const thanksTag = document.createElement('p')
-    thanksTag.innerText = 'Thanks for buying with us. Enjoy your purchase!'
+    thanksTag.innerText = 'Gracias por elegirnos. ¡Disfruta tu compra!'
     cartBody.appendChild(thanksTag)
 }
 

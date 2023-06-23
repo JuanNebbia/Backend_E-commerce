@@ -1,0 +1,24 @@
+<div class="newproduct-container">
+    <h3 class="newproduct-title">Crear nuevo producto</h3>
+    <div class="form-card">
+        <form class="product-form" id="product-form" onsubmit="createProduct(event)">
+            <label for="title">Titulo</label>
+            <input type="text" id="product-title" name="title" required>
+            <label for="product-category">Categoria</label>
+            <input type="text" id="product-category" name="category" required>
+            <label for="product-description">Descripción</label>
+            <input type="text" id="product-description" name="description" required>
+            <label for="product-price">Precio</label>
+            <input type="number" id="product-price" name="price" required>
+            <label for="product-price">Unidades disponibles</label>
+            <input type="number" id="product-stock" name="stock" required>
+            <label for="product-img">Imágenes</label>
+            <input type="file" id="product-img" accept="image/*" name="files" multiple required>
+            <label for="product-code">Códgio</label>
+            <input type="number" id="product-code" name="code" required>
+            <input type="submit" value="Crear">
+        </form>
+    </div>
+</div>
+
+<script src="/statics/js/newproduct.js"></script>

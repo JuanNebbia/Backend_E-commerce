@@ -39,23 +39,18 @@
                         <p id="no-image">no image</p>
                 {{/if}}
                 <p class="price-tag">${{price}}</p>
-                {{!-- {{#if stock}}
-                    <p class="stock-tag">{{stock}} in stock</p>
-                    {{else}}
-                        <p class="stock-tag">sold out</p>
-                {{/if}} --}}
                 <p class="item-description">{{description}}</p>
             </a>
         {{/each}}
     </div>
     <div class="pag-btn-container">
         {{#if products.hasPrevPage}}
-            <a href={{products.prevLink}}>Anterior</a>
+            <a href={{products.prevLink}} class="pagLink">Anterior</a>
             {{else}}
             <p class="pagLink disabled" disabled>Anterior</p>
         {{/if}}
         {{#if products.hasNextPage}}
-            <a href={{products.nextLink}}>Siguiente</a>
+            <a href={{products.nextLink}} class="pagLink">Siguiente</a>
             {{else}}
             <p class="pagLink disabled" disabled>Siguiente</p>
         {{/if}}

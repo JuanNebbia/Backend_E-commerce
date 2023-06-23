@@ -56,6 +56,14 @@ router.get('/profile/:uid',
     ViewsController.profile
 )
 
+
+router.get('/newproduct', 
+    authMiddleware,
+    passportCall('jwt'),
+    roleMiddleware(['admin', 'premium']),
+    ViewsController.newProduct
+)
+
 router.get('/chat', 
     authMiddleware,
     passportCall('jwt'),

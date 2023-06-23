@@ -19,7 +19,7 @@
             <p>{{product.description}}</p>
             <p class="price-tag">${{product.price}}</p>
             {{#if product.stock}}
-                <p class="stock-tag">{{product.stock}} in stock</p>
+                <p class="stock-tag">{{product.stock}} unidades disponibles</p>
                 <div class="button-section-container">
                     <div class="item-counter-container">
                         <button class="less-button-counter" onclick="decreaseAmount(event, {{product.stock}})">-</button>
@@ -31,7 +31,7 @@
                     {{/if}}
                 </div>
             {{else}}
-                <p>Sold out</p>
+                <p class="sold-out">Producto agotado</p>
             {{/if}}
         </div>
     </div>

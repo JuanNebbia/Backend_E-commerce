@@ -70,7 +70,6 @@ class ProductsService {
         if(!title || !description || !code || !stock || !price || !category){
             throw new HttpError('Please include all the required fields', HTTP_STATUS.BAD_REQUEST)
         }
-        console.log(owner);
         const productPayloadDTO = new AddProductDTO(productPayload, files, owner)
         const newProduct = productsDao.add(productPayloadDTO)
         return newProduct
