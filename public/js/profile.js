@@ -7,7 +7,7 @@ const changeRole = async(uid, status) =>{
     })
     .then(response => {
         if(response.status === 200){
-            alert('Rol modificado exitosamente')
+            alert('Rol modificado exitosamente, reinicia sesión para ver los cambios.')
             window.location = window.location
         }else{
             alert('hubo un problema al cambiar el rol')
