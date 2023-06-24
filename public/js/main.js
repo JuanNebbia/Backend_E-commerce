@@ -8,3 +8,7 @@ logoutButton?.addEventListener('click', ()=>{
 const seeProfile = (uid) =>{
     window.location.href = `/profile/${uid}`
 }
+
+const seeCart = async (event, cid) =>{
+    window.location.href = `/cart/${cid}`
+}

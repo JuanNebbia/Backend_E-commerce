@@ -99,7 +99,7 @@ body{
 }
 
 .product-item{
-    background-color: #ffffff;
+    background-color: #8d8d8d;
     padding: 0;
     width: 14rem;
     text-align: center;
@@ -117,7 +117,7 @@ body{
 .product-item:hover{
     height: 23rem;
     margin-bottom: -3rem;
-    box-shadow: 0 0 8px #687066;
+    box-shadow: 0 0 8px #000000;
 }
 
 .product-item:hover .item-description{
@@ -175,10 +175,11 @@ body{
 
 .pagLink{
     margin: auto 0;
+    color: #fff;
 }
 
 .pagLink.disabled{
-    color: #555;
+    color: #888;
     cursor: not-allowed;
 }
 

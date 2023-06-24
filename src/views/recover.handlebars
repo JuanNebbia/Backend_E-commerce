@@ -1,14 +1,13 @@
-<h1 class="recover-title">Recover password</h1>
-
-<div class="row container">
-    <form class="col s12" action="/api/mail" method="post">
-        <div class="row">
-            <div class="input-field col s12">
-                <input type="email" class="validate" name="email">
+<div class="recover-container">
+    <h2 class="recover-title">Recuperar contraseña</h2>
+    <div class="recover-form-container">
+        <h3>Ingresá tu dirección de correo</h3>
+        <form class="" action="/api/mail" method="post" class="recover-form">
+            <div class="input-field">
                 <label for="email">Email</label>
-                <span class="helper-text" data-error="Introduce a valid email" data-success="right"></span>
+                <input type="email" class="validate" name="email">
             </div>
-        </div>
-        <input class="waves-effect waves-light btn-small recover-submit" type="submit" value="Send recovering email">
-    </form>
+            <input class="waves-effect waves-light btn-small recover-submit" type="submit" value="Enviar correo">
+        </form>
+    </div>
 </div>

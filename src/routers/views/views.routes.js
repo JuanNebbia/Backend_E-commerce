@@ -56,7 +56,6 @@ router.get('/profile/:uid',
     ViewsController.profile
 )
 
-
 router.get('/newproduct', 
     authMiddleware,
     passportCall('jwt'),

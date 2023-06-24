@@ -10,10 +10,6 @@ const seeProduct = async (event, pid) => {
     window.location.href = '/product/' + pid
 }
 
-const seeCart = async (event, cid) =>{
-    window.location.href = `/cart/${cid}`
-}
-
 const decreaseAmount = (event) =>{
     const amount = + event.target.nextElementSibling.textContent
     if (amount > 1){

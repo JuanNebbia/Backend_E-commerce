@@ -1,44 +1,36 @@
-<h1 class="signup-title">Sign up</h1>
-<div class="row register-form-container container">
-    <form class="col s12 register-form" id="register-form" enctype="multipart/form-data" onsubmit="registerUser(event)">
-        <div class="row">
-            <div class="input-field col s6">
-                <input type="text" class="validate" name="firstName">
-                <label for="first_name">First Name</label>
+<div class="register-container">
+    <h1 class="signup-title">Crear usuario</h1>
+    <div class="register-form-container">
+        <form class="register-form" id="register-form" enctype="multipart/form-data" onsubmit="registerUser(event)">
+            <div class="input-field">
+                <label for="first_name-input">Nombre/s</label>
+                <input type="text" class="validate" name="firstName" id="last_name-input" required>
             </div>
-            <div class="input-field col s6">
-                <input type="text" class="validate" name="lastName">
-                <label for="last_name">Last Name</label>
+            <div class="input-field">
+                <label for="last_name-input">Apellido</label>
+                <input type="text" class="validate" name="lastName" id="last_name-input" required>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input type="email" class="validate" name="email">
-                <label for="disabled">Email</label>
-                <span class="helper-text" data-error="Introduce a valid email" data-success="right"></span>
+            <div class="input-field">
+                <label for="email-input">Email</label>
+                <input type="email" class="validate" name="email" id="email-input" required>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input type="number" class="validate" name="age" min="1" max="100">
-                <label for="email">Age</label>
+            <div class="input-field">
+                <label for="age-input">Edad</label>
+                <input type="number" class="validate" name="age" min="1" max="100" id="age-input" required>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input type="password" class="validate" name="password">
-                <label for="password">Password</label>
+            <div class="input-field">
+                <label for="password-input">Contraseña</label>
+                <input type="password" class="validate" name="password" id="password-input" required>
             </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <p>Choose a profile picture (optional)</p>
-                <input type="file" class="validate" name="file">
+            <div class="input-field">
+                <label for="pic-input">Escoge una foto de perfil</label>
+                <input type="file" class="validate" name="file" id="pic-input">
             </div>
-        </div>
-        <input class="waves-effect waves-light btn-small register-submit" type="submit" value="Register">
-    </form>
+            <input class="waves-effect waves-light btn-small register-submit" type="submit" value="Crear">
+        </form>
+    </div>
+    <a href="/login" class="login-anchor">¿Ya tienes una cuenta? ¡Ingresa!</a>
 </div>
-<a href="/login" class="login-anchor">Do You have an account? Log in!</a>
+
 
 <script src="/statics/js/register.js"></script>

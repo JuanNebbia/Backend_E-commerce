@@ -20,16 +20,21 @@
             <p class="price-tag">${{product.price}}</p>
             {{#if product.stock}}
                 <p class="stock-tag">{{product.stock}} unidades disponibles</p>
-                <div class="button-section-container">
-                    <div class="item-counter-container">
-                        <button class="less-button-counter" onclick="decreaseAmount(event, {{product.stock}})">-</button>
-                        <p class="counter">1</p>
-                        <button class="more-button-counter" onclick="increaseAmount(event, {{product.stock}})">+</button>
-                    </div>
-                    {{#if product.status}}
-                        <button id="add-to-cart-button" class="add-to-cart-button" onclick="addToCart(event, `{{product.id}}`, `{{user.cart}}`)">Añadir al carrito</button>
-                    {{/if}}
-                </div>
+                {{#if admin}}
+                    <p class="product-owner">propietario: {{product.owner}}</p>
+                    <button id="delete-btn" class="delete-btn" onclick="deleteItem(`{{product.id}}`)">Eliminar producto</button>
+                    {{else}}
+                        <div class="button-section-container">
+                            <div class="item-counter-container">
+                                <button class="less-button-counter" onclick="decreaseAmount(event, {{product.stock}})">-</button>
+                                <p class="counter">1</p>
+                                <button class="more-button-counter" onclick="increaseAmount(event, {{product.stock}})">+</button>
+                            </div>
+                            {{#if product.status}}
+                                <button id="add-to-cart-btn" class="add-to-cart-btn" onclick="addToCart(event, `{{product.id}}`, `{{user.cart}}`)">Añadir al carrito</button>
+                            {{/if}}
+                        </div>
+                {{/if}}
             {{else}}
                 <p class="sold-out">Producto agotado</p>
             {{/if}}

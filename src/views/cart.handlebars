@@ -2,19 +2,19 @@
     <h1 class="cart-title">Carrito</h1>
     <div class="cart-list" id={{cart._id}}>
     {{#if cart.products}}
-        <button onclick="clearCart(event)" class="clear-button waves-effect waves-light btn-large">Limpiar carrito</button>
+        <button onclick="clearCart(``{{cart._id}})" class="clear-button waves-effect waves-light btn-large">Limpiar carrito</button>
         {{#each cart.products}}
             <div id={{product._id}} class="product-item">
                 <p class="product-title">{{product.title}}</p>
                 <p class="product-price">${{product.price}}</p>
-                <p class="product-amount">Monto: <span class="quantity-tag">{{quantity}}</span></p>
+                <p class="product-amount">Cantidad: <span class="quantity-tag">{{quantity}}</span></p>
                 <p class="subtotal">Subtotal: ${{#multiply product.price quantity}}{{/multiply}}</p>
-                <button onclick="removeProduct(event)" class="remove-button waves-effect waves-light btn-small yellow darken-4">Quitar</button>
+                <button onclick="removeProduct(`{{cart._id}}`,`{{product._id}}`)" class="remove-button waves-effect waves-light btn-small yellow darken-4">Quitar</button>
             </div>
         {{/each}}
-        <button onclick="purchase(event)" class="purchase-button waves-effect waves-light btn-large green darken-4">Comprar</button>
+        <button onclick="purchase(`{{cart._id}}`)" class="purchase-button waves-effect waves-light btn-large green darken-4">Comprar</button>
     {{else}}
-        <p>Carrito vacío</p>
+        <p class="empty-cart">¡Todavía no has añadido ningún producto!</p>
     {{/if}}
     </div>
 </div>

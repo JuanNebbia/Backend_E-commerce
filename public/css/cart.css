@@ -1,7 +1,3 @@
-body{
-    background-color: #dfdfdf;
-}
-
 .cart-container{
     display: flex;
     flex-direction: column;
@@ -11,12 +7,14 @@ body{
 .cart-title{
     text-align: center;
     font-size: 3rem;
+    color: #b8c4b9;
 }
 
 .clear-button{
     display: block;
     margin: auto;
     background-color: #f44336;
+    cursor: pointer;
 }
 
 .clear-button:hover{
@@ -24,11 +22,11 @@ body{
 }
 
 .product-item{
-    background-color: #adcedb;
+    background-color: #c2c7bf;
     margin: 1rem;
     padding: 0.5rem 1rem;
     width: 90vw;
-    
+    border-radius: 0.3rem;
 }
 
 .product-title{
@@ -43,6 +41,7 @@ body{
 .remove-button{
     margin: 0.5rem 0;
     background-color: #ffeb3b;
+    cursor: pointer;
 }
 
 .quantity-tag{
@@ -58,4 +57,9 @@ body{
 .purchase-button, .see-ticket-button{
     display: block;
     margin: 1rem auto;
+    cursor: pointer;
+}
+
+.empty-cart{
+    color: #b8c4b9;
 }

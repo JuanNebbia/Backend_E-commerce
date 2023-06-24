@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> --}}
     <link rel="stylesheet" href="/statics/css/{{styles}}">
     <link rel="stylesheet" href="/statics/css/main.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -20,14 +19,9 @@
                 <h2  class="brand-logo">Matete</h2>
             </a>
             <ul id="nav-mobile" class="btn-list">
-                {{!-- <li><a href="/">Home</a></li>
-                <li><a href="/chat">Chat</a></li> --}}
+                <li><a href="/products" class="nav-btn">Inicio</a></li>
+                {{!-- <li><a href="/chat">Chat</a></li> --}}
                 {{#if user}}
-                    {{#if cart.products.length}}
-                        <li>
-                            <button class="see-cart-button waves-effect waves-light btn-large indigo" onclick="seeCart(event, `{{user.cart}}`)">Ver carrito ({{cart.products.length}})</button>
-                        </li>
-                    {{/if}}
                     {{#if admin}}
                         <li>
                             <a href="/users" class="nav-btn">Ver usuarios</a>
@@ -45,6 +39,11 @@
                     {{#if admin}}
                         <li>
                             <a href="/newproduct" class="nav-btn">Nuevo producto</a>
+                        </li>
+                    {{/if}}
+                    {{#if cart.products.length}}
+                        <li>
+                            <a class="nav-btn" onclick="seeCart(event, `{{user.cart}}`)">Carrito ({{cart.products.length}})</a>
                         </li>
                     {{/if}}
                     <li>

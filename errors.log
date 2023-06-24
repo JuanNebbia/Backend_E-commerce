@@ -29,3 +29,9 @@
 {"level":"error","message":{"description":"Please include all the required fields","status":400}}
 {"level":"error","message":{"description":"Please include all the required fields","status":400}}
 {"_message":"products validation failed","errors":{"code":{"kind":"required","message":"Path `code` is required.","name":"ValidatorError","path":"code","properties":{"message":"Path `code` is required.","path":"code","type":"required"}}},"level":"error","message":"products validation failed: code: Path `code` is required.","name":"ValidationError"}
+{"code":11000,"index":0,"keyPattern":{"code":1},"keyValue":{"code":"852"},"level":"error"}
+{"level":"error","message":{"description":"Can not add own products","status":403}}
+{"level":"error","message":{"description":"The current cart is empty","status":400}}
+{"level":"error","message":{"description":"Incomplete documents","status":403}}
+{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}
+{"level":"error","message":{"description":"The new password can not be the same that the previous one","status":400}}

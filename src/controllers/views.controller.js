@@ -64,10 +64,12 @@ class ViewsController{
         try {
             const admin = user.role === 'admin'
             const product = await productsService.getProductById(pid)
+            const cart = await cartsService.getCartById(user.cart)
             res.render('productDetail', {
                 title: product.title,
                 styles: 'detail.css',
                 product,
+                cart,
                 user,
                 admin
             })
@@ -156,13 +158,15 @@ class ViewsController{
     }
 
     static async ticket(req, res, next) {
+        const { user } = req
         const { tid } = req.params 
         try{
             const ticket = await ticketsService.getTicketById(tid)
             res.render('ticket', {
                 title: "Purchase Ticket",
                 styles:"ticket.css",
-                ticket
+                ticket,
+                user
                 })
         }catch (error) {
             next(error)

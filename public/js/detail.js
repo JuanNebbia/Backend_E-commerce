@@ -23,9 +23,9 @@ const addToCart = async (event, pid, cid) =>{
             body: JSON.stringify({amount}),
         })
         if (addedProduct.status == 200){
-            alert('item added to cart')
+            alert('Producto añadido al carrito')
         }else{
-            alert("Can't add product to cart")
+            alert("No se ha podido añadir el producto.")
         }
         event.target.previousElementSibling.children[1].textContent = 1
         
@@ -37,4 +37,19 @@ const addToCart = async (event, pid, cid) =>{
 const selectImg = (name) =>{
     const img = document.querySelector('.product-img')
     img.src = `../../statics/products/${name}`
+}
+
+const deleteItem = (pid) =>{      
+    fetch(`/api/products/${pid}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (response.ok){
+            alert('producto eliminado exitosamente')
+            window.location = '/'
+        }else{
+            alert("No se pudo eliminar el producto, vuelva a intentar")
+        }
+
+    })
 }
