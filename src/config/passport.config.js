@@ -9,6 +9,7 @@ const { cookieExtractor } = require('../utils/session.utils')
 const { SECRET_KEY } = require("../config/enviroment.config.js")
 const { ADMIN_NAME, ADMIN_PASSWORD } = require('./enviroment.config')
 const { AddUserDTO, GetUserDTO } = require('../models/dtos/users.dto.js')
+const { BASE_URL } = require('./enviroment.config')
 
 const { cartsDao, usersDao } = getDaos()
 
@@ -100,7 +101,7 @@ const initializePassport = () =>{
         new GithubStrategy({
             clientID: 'Iv1.b64438eddbef112a',
             clientSecret: '5d13665a8920d446f405d371dfbb9af26561a52e',
-            callbackURL: 'http://localhost:8080/api/session/github/callback'
+            callbackURL: `http://${BASE_URL}/api/session/github/callback`
         },
         async (accessToken, refreshToken, profile, done)=>{
             const userData = profile._json
