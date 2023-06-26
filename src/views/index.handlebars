@@ -1,36 +1,19 @@
 <div class="banner-container">
-    <img class="banner-img" src="/statics/assets/banner.jpg" alt="yerba mate">
+    <h2 class="banner-info_1">Los mejores productos de nuestra tierra</h2>
+    <h3 class="banner-info_2">Al mejor precio del mercado</h3>
+    {{!-- <img class="banner-img" src="/statics/assets/banner.jpg" alt="yerba mate"> --}}
 </div>
 <div class="index-container">
-    {{!-- <div class="welcome-box z-depth-2">
-        <div class="info-section">
-            <h3 class="welcome-title">Welcome {{user.firstName}} {{user.lastName}} <span class="user-role">({{user.role}})</span></h3>
-            <p class="user-email">{{user.email}}</p>
-            {{#if user.age}}
-                <p class="user-age">{{user.age}} years old</p>
-            {{/if}}
-            {{#if user.githubLogin}}
-                <p class="github-user-tag">(Registered with Github)</p>
-            {{/if}}
-        </div>
-        {{#if user.profilePic}}
-            <div class="pic-section">
-                <div class="profile-pic-container">
-                    <img src="../../statics/profiles/{{user.profilePic.originalName}}" alt="">
-                </div>
-            </div>
-        {{/if}}
-    </div> --}}
     <div class="filter-container">
-        <button class="filter-btn" onclick="filterResults(event, null)">Todo</button>
-        <button class="filter-btn" onclick="filterResults(event, 'mate')">Mates</button>
-        <button class="filter-btn" onclick="filterResults(event, 'termo')">Termos</button>
-        <button class="filter-btn" onclick="filterResults(event, 'bombilla')">Bombillas</button>
+        <button class="filter-btn todo" onclick="filterResults(event, null)">Todo</button>
+        <button class="filter-btn mates" onclick="filterResults(event, 'mate')">Mates</button>
+        <button class="filter-btn termos" onclick="filterResults(event, 'termo')">Termos</button>
+        <button class="filter-btn bombillas" onclick="filterResults(event, 'bombilla')">Bombillas</button>
     </div>
+    <h3 class="amount-tag">{{products.totalDocs}} resultados</h3>
     <div id="product-list-container">
         {{#each products.docs}}
             <a class="product-item" id={{id}} onclick="seeProduct(event, `{{id}}`)">
-                <p id="item-title">{{title}}</p>
                 {{#if thumbnails}}
                     <div class="thumbnail-container">
                         <img src="../../statics/products/{{thumbnails.[0].originalName}}" alt="">
@@ -38,6 +21,7 @@
                     {{else}}
                         <p id="no-image">no image</p>
                 {{/if}}
+                <p id="item-title">{{title}}</p>
                 <p class="price-tag">${{price}}</p>
                 <p class="item-description">{{description}}</p>
             </a>
@@ -57,5 +41,4 @@
     </div>
 </div>
 
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/statics/js/index.js"></script>

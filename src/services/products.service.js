@@ -72,7 +72,6 @@ class ProductsService {
             throw new HttpError('Please include all the required fields', HTTP_STATUS.BAD_REQUEST)
         }
         productPayload.code = uuidv4()
-        console.log(productPayload);
         const productPayloadDTO = new AddProductDTO(productPayload, files, owner)
         const newProduct = productsDao.add(productPayloadDTO)
         return newProduct

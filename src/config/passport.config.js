@@ -75,12 +75,9 @@ const initializePassport = () =>{
             try {
                 if(username === ADMIN_NAME && password === ADMIN_PASSWORD){
                     const user = {
-                        firstName: 'Admin',
-                        lastName: 'Coder',
                         email: ADMIN_NAME,
                         password: ADMIN_PASSWORD,
                         role: 'admin',
-                        cart: '646d7b6c397b8a60207b7fd7'
                     }
                     return done(null, user)
                 }

@@ -41,8 +41,11 @@ class ViewsController{
         const host = req.get('host')
         try {
             const products = await productsService.getProducts(limit, page, query, sort, protocol, host)
-            const cart = await cartsService.getCartById(user.cart)
             const admin = user.role === 'admin'
+            let cart
+            if(!admin){
+                cart = await cartsService.getCartById(user.cart)
+            }
             const premium = user.role === 'premium'
             res.render('index', {
                 title: "E-commerce",
@@ -51,7 +54,7 @@ class ViewsController{
                 user,
                 cart,
                 admin,
-                premium
+                premium,
             })
         } catch (error) {
             next(error)
@@ -63,8 +66,11 @@ class ViewsController{
         const { pid } = req.params
         try {
             const admin = user.role === 'admin'
+            let cart
+            if(!admin){
+                cart = await cartsService.getCartById(user.cart)
+            }
             const product = await productsService.getProductById(pid)
-            const cart = await cartsService.getCartById(user.cart)
             res.render('productDetail', {
                 title: product.title,
                 styles: 'detail.css',

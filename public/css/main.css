@@ -3,12 +3,12 @@ html, body{
     padding: 0;
     margin: 0;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #111310;
+    background-color: #1c1f1a;
 }
 
 .navbar{ 
     display: flex; 
-    background-color: #105c20;  
+    background-color: #02360d;  
     margin: 0;
 }
 
@@ -56,12 +56,6 @@ html, body{
     text-decoration: none;
 }
 
-.logout-btn{
-    color: #fff;
-    font-weight: 100;
-    border: none ;
-    height: fit-content;
-    background-color: transparent;
-    border-radius: 0.2rem;
-    cursor: pointer;
+.nav-btn:hover{
+    color: #aaa
 }

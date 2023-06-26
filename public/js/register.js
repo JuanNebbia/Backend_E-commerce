@@ -11,6 +11,7 @@ const registerUser = async(event) =>{
     })
     .then((response) => {
         if (response.ok) {
+          alert('Usuario creado. Por favor, inicie sesión.')
           document.location = '/'
         } else {
           alert("Error al enviar el formulario");
