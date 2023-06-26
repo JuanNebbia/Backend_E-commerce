@@ -11,6 +11,7 @@ const createProduct = async(event) =>{
     })
     .then((response) => {
         if (response.ok) {
+          alert('Producto creado exitosamente')
           document.location = '/'
         } else {
           alert("Error al enviar el formulario");

@@ -34,7 +34,6 @@ class ProductsController{
         const productPayload = req.body
         const { files } = req
         const owner = req.user.email
-        console.log(productPayload);
         try {
             const addProduct = await productsService.createProduct(productPayload, files, owner)
             req.logger.info(`${productPayload.title} created`)

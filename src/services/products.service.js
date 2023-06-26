@@ -3,6 +3,7 @@ const getDaos = require("../models/daos/factory.js");
 const { GetProductDTO, UpdateProductDTO, AddProductDTO } = require("../models/dtos/products.dto.js");
 const HttpError = require("../utils/error.utils.js");
 const MailService = require("./mail.service.js");
+const { v4: uuidv4 } = require('uuid');
 
 const { productsDao } = getDaos()
 
@@ -66,10 +67,12 @@ class ProductsService {
     }
 
     async createProduct(productPayload, files, owner){
-        const { title, description, code, stock, price, category } = productPayload
-        if(!title || !description || !code || !stock || !price || !category){
+        const { title, description, stock, price, category } = productPayload
+        if(!title || !description || !stock || !price || !category){
             throw new HttpError('Please include all the required fields', HTTP_STATUS.BAD_REQUEST)
         }
+        productPayload.code = uuidv4()
+        console.log(productPayload);
         const productPayloadDTO = new AddProductDTO(productPayload, files, owner)
         const newProduct = productsDao.add(productPayloadDTO)
         return newProduct
