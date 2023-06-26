@@ -111,6 +111,12 @@
 
 .delete-btn{
     margin-top: auto;
+    background-color: #f15252;
+    padding: 0.8rem;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.3rem;
 }
 
 .sold-out{

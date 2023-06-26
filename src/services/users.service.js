@@ -148,6 +148,7 @@ class UsersService {
             mailService.notifyDeletion(iUser.email, iUser.first_name)
             usersDao.deleteUser(iUser._id)
         })
+        return inactiveUsers
     }
 
     async deleteUser(uid){

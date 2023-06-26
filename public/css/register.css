@@ -34,7 +34,12 @@
 }
 
 .register-submit{
-    color: #fff;
+    background-color: #40b44f;
+    padding: 0.8rem 2rem;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.3rem;
 }
 
 .login-anchor{
@@ -43,6 +48,7 @@
     text-align: center;
     font-size: 1.5rem;
     text-decoration: underline;
+    color: #1242a8;
 }
 
 .login-anchor:hover{

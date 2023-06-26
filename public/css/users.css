@@ -42,3 +42,25 @@ td{
     width: 100%;
     object-fit: cover;
 }
+
+.users-btn{
+    cursor: pointer;
+    border: none;
+    padding: 0.3rem;
+    font-weight: 600;
+    border-radius: 0.3rem;
+}
+
+.delete-user-btn{
+   background-color: #f15252;
+}
+
+.change-role-btn{
+    background-color: #f1d452;
+ }
+
+ .delete-inactive-btn{
+    margin-top: 1rem;
+    background-color: #f15252;
+    padding: 0.8rem;
+ }

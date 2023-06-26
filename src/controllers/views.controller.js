@@ -140,10 +140,12 @@ class ViewsController{
     static async newProduct(req, res, next){
         const { user } = req
         try {
+            const admin = user.role === 'admin'
             res.render('newProduct', {
                 title: "Crear Producto",
                 styles:"newproduct.css",
                 user,
+                admin
             })
         } catch (error) {
             next(error)

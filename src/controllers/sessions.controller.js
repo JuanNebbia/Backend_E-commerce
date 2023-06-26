@@ -11,7 +11,6 @@ class SessionsController{
 
     static async login(req, res, next){
         const { user } = req;
-        console.log(user);
         try {
             if(!user){
                 req.logger.error('User not found')

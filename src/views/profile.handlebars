@@ -11,7 +11,7 @@
         <h4>{{userData.first_name}} {{userData.last_name}}</h4>
         <p>{{userData.email}}</p>
         <p>{{userData.role}}</p>
-        <button onclick="changeRole(`{{userData._id}}`, `{{userData.status}}`)">Cambiar Rol</button>
+        <button onclick="changeRole(`{{userData._id}}`, `{{userData.status}}`)" class="change-role-btn">Cambiar Rol</button>
         {{#if userData.status}}
             <small class="premium-tag">Estás listo para acceder a el servicio premium</small>
             {{else}}

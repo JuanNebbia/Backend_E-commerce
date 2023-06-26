@@ -33,6 +33,15 @@
     margin-bottom: 1rem;
 }
 
+.login-submit{
+    background-color: #40b44f;
+    padding: 0.8rem;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.3rem;
+}
+
 .password-recovering{
     margin: 2rem;
 }
@@ -43,6 +52,7 @@
     text-align: center;
     font-size: 1.5rem;
     text-decoration: underline;
+    color: #1242a8;
 }
 
 .signup-anchor:hover{
@@ -52,4 +62,15 @@
 .github-login{
     margin: 2rem auto;
     display: block;
+    background-color: #a740b4;
+    padding: 0.8rem;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.3rem;
+}
+
+.github-login a{
+    color: #000;
+    text-decoration: none;
 }

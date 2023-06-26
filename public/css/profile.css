@@ -53,3 +53,12 @@
     align-items: center;
     background-color: #888;
 }
+
+.change-role-btn{
+    background-color: #40b44f;
+    padding: 0.8rem;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.3rem;
+}

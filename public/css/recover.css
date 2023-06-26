@@ -37,3 +37,12 @@ h3{
     width: 80%;
     margin-bottom: 1rem;
 }
+
+.recover-submit{
+    background-color: #40b44f;
+    padding: 0.8rem;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    border-radius: 0.3rem;
+}

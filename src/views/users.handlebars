@@ -6,6 +6,7 @@
             <th class="header">Email</th>
             <th class="header">Rol</th>
             <th class="header">Tipo de acceso</th>
+            <th class="header">Último acceso</th>
         </tr>
         {{#each usersList}}
         <tr>
@@ -27,16 +28,17 @@
                 {{else}}
                 <td>local</td>
             {{/if}}
+            <td>{{last_connection}}</td>
             <td>
-                <button onclick="deleteUser(`{{_id}}`)">Eliminar</button>
+                <button onclick="deleteUser(`{{_id}}`)" class="users-btn delete-user-btn">Eliminar</button>
             </td>
             <td>
-                <button onclick="changeRole(`{{_id}}`)">Cambiar rol</button>
+                <button onclick="changeRole(`{{_id}}`)" class="users-btn change-role-btn">Cambiar rol</button>
             </td>
         </tr>
         {{/each}}
     </table>
-    <button onclick="deleteInactive()">Eliminar usuarios inactivos</button>
+    <button onclick="deleteInactive()" class="users-btn delete-inactive-btn">Eliminar usuarios inactivos</button>
 </div>
 
 <script src="/statics/js/users.js"></script>
