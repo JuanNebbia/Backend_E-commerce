@@ -14,5 +14,8 @@ module.exports = {
     SECRET_KEY: process.env.SECRET_KEY || '',
     SESSION_KEY: process.env.SESSION_KEY || '',
     EMAIL: process.env.EMAIL || '',
-    EMAIL_PASSWORD: process.env.EMAIL_PASSWORD || ''
+    EMAIL_PASSWORD: process.env.EMAIL_PASSWORD || '',
+    GITHUB_ID:  process.env.GITHUB_ID,
+    GITHUB_SECRET: process.env.GITHUB_SECRET
+
 }

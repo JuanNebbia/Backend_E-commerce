@@ -58,7 +58,7 @@ app.set('views', path.resolve(__dirname, './views'));
 app.set('view engine', 'handlebars');
 
 //Server
-const server = app.listen(PORT, () => logGreen('Server up and running on port ', PORT))
+const server = app.listen(PORT, () => logGreen('Server up and running on port ' + PORT))
 
 // Server error
 server.on("error", (error) => {

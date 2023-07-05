@@ -6,7 +6,7 @@ const { createHash, isValidPassword } = require('../utils/bcrypt.utils')
 const getDaos = require('../models/daos/factory')
 const { logRed } = require('../utils/console.utils')
 const { cookieExtractor } = require('../utils/session.utils')
-const { SECRET_KEY } = require("../config/enviroment.config.js")
+const { SECRET_KEY, GITHUB_ID, GITHUB_SECRET } = require("../config/enviroment.config.js")
 const { ADMIN_NAME, ADMIN_PASSWORD } = require('./enviroment.config')
 const { AddUserDTO, GetUserDTO } = require('../models/dtos/users.dto.js')
 const { BASE_URL } = require('./enviroment.config')
@@ -99,9 +99,9 @@ const initializePassport = () =>{
     //Github Strategy
     passport.use(
         new GithubStrategy({
-            clientID: 'Iv1.b64438eddbef112a',
-            clientSecret: '5d13665a8920d446f405d371dfbb9af26561a52e',
-            callbackURL: `http://${BASE_URL}/api/session/github/callback`
+            clientID: GITHUB_ID,
+            clientSecret: GITHUB_SECRET,
+            callbackURL: `https://${BASE_URL}/api/session/github/callback`
         },
         async (accessToken, refreshToken, profile, done)=>{
             const userData = profile._json
