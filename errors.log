@@ -1,2 +1,3 @@
 {"level":"error"}
 {"level":"error","message":{"description":"Incomplete documents","status":403}}
+{"code":"redirect_uri_mismatch","level":"error","message":"The redirect_uri MUST match the registered callback URL for this application.","name":"AuthorizationError","status":500,"uri":"https://docs.github.com/apps/managing-oauth-apps/troubleshooting-authorization-request-errors/#redirect-uri-mismatch"}
